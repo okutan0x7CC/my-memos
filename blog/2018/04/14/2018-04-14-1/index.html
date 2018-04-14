@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] Add shadow to UIView with playground
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38768395-0d3bc54e-402e-11e8-845a-ddba5b4cbd47.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
+                        </li>
+                    
+                        <li class="blog-tag">
+                            UIView
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-14</p>                    
+                    
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>View に Shadow をつける時、色々試したいので Playground で実装しました。</p>
+
+<p>また、UIView に Shadow をつけると意外と行数が多くなるので、</p>
+
+<p>UIView の拡張に addShadow  を作りました。</p>
+
+<p><br></p>
+
+<h2 id="コードはこちら">コードはこちら</h2>
+
+<pre><code>import UIKit
+import PlaygroundSupport
+
+
+extension UIView {
+    
+    func addShadow(radius: CGFloat, shadowColor: UIColor, offset: CGSize, opacity: Float) {
+        self.layer.shadowColor   = shadowColor.cgColor
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowOffset  = offset
+        self.layer.shadowRadius  = radius
+        
+        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+}
+
+
+let baseView = UIView(frame: CGRect(x: 0,
+                                    y: 0,
+                                    width: 400,
+                                    height: 400))
+        
+let shadowView = UIView(frame: CGRect(x: 100,
+                                      y: 100,
+                                      width: 200,
+                                      height: 200))
+shadowView.layer.cornerRadius = shadowView.frame.height * 0.05
+
+baseView.backgroundColor = .white
+shadowView.backgroundColor = .orange
+
+shadowView.addShadow(radius: 10,
+                     shadowColor: .black,
+                     offset: CGSize(width: 0, height: 0),
+                     opacity: 0.5)
+
+baseView.addSubview(shadowView)
+PlaygroundPage.current.liveView = baseView
+</code></pre>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>

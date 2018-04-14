@@ -1,0 +1,93 @@
+
+.blog-article h1.blog-title {
+    text-align: center;
+    margin: 68pt 0pt;
+    font-size: 24pt;
+}
+
+.blog-article .blog-image-container {
+    object-fit: contain;
+    height: 320pt;
+    text-align: center;
+}
+
+.blog-article .blog-image-container img.blog-image {
+    height: 100%;
+    border: 2px solid rgb(243, 244, 244);
+}
+
+.blog-article .blog-publish-date {
+    text-align: right;
+}
+
+.blog-article ul.blog-tags {
+    list-style: none;
+    margin: 25pt 0pt 0pt 0pt;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.blog-article ul.blog-tags li.blog-tag {
+    padding: 5px;
+    margin: 5px 10px;
+    background-color: rgb(243, 244, 244);
+    font-size: 14pt;
+}
+
+.blog-article .blog-content {
+    padding: 16pt;
+    font-size: 12pt;
+}
+
+.blog-article .blog-content a {
+    color: #777;
+}
+
+.blog-article .blog-content h2 {
+    font-size: 19pt;
+    border-bottom: 1px solid rgb(243, 244, 244);
+}
+
+.blog-article .blog-content pre {
+    background-color: rgb(243, 244, 244);
+    border: 1px solid rgb(204, 204, 204);
+    padding: 8pt;
+    font-weight: lighter;
+    overflow: auto;
+}
+
+.blog-article .blog-content table {
+    margin: auto;
+    border: 1.5px solid rgb(243, 244, 244);
+}
+
+.blog-article .blog-content table caption {
+    font-size: 14pt;
+    font-weight: 600;
+    padding: 10pt;
+}
+
+.blog-article .blog-content table th {
+    padding: 10pt;
+    border: 1px solid rgb(243, 244, 244);
+    border: 1px solid rgb(243, 244, 244);
+}
+
+.blog-article .blog-content table .key {
+    text-align: left;
+}
+
+.blog-article .blog-content table .value {
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: 'RictyDiminished-Regular';
+    src: url("./fonts/RictyDiminished-Regular.ttf");
+}
+
+.blog-article .blog-content code {
+    font-family: 'RictyDiminished-Regular';
+}

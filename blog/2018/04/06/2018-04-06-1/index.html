@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [CSS] Make hamburger menu with only css
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38423808-ec5687d2-39e9-11e8-9d19-70cdf496c53f.gif">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            css
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-06</p>                    
+                    
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>ハンバーガーメニューをJavaScript等を使わず、CSSのみでシンプルに作りました。</p>
+
+<p>ちなみに、このWebサイトの画面を狭めると出てくるのは、このハンバーガーメニューです。</p>
+
+<p><br></p>
+
+<h2 id="コードはこちら">コードはこちら</h2>
+
+<p><br></p>
+
+<pre><code>&lt;!DOCTYPE html&gt; 
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;style type=&quot;text/css&quot;&gt;
+            .hamburger-menu #hamburger-handler {
+                display: none;
+            }
+            .hamburger-menu .content {
+                display: none;
+            }
+            .hamburger-menu .cross {
+                display: none;
+                left: 0px;
+                top: 0px;
+            }
+            .hamburger-menu #hamburger-handler:checked ~ .content {
+                display: list-item;
+            }
+            .hamburger-menu #hamburger-handler:checked ~ .cross {
+                display: block;
+            }
+            .hamburger-menu #hamburger-handler:checked ~ .hamburger {
+                display: none;
+            }
+            .hamburger-menu ul {
+                list-style: none;
+                padding-left: 0px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class=&quot;hamburger-menu&quot;&gt;
+            &lt;input id=&quot;hamburger-handler&quot; type=&quot;checkbox&quot;&gt;
+            &lt;label class=&quot;hamburger&quot; for=&quot;hamburger-handler&quot;&gt;=&lt;/label&gt;
+            &lt;label class=&quot;cross&quot; for=&quot;hamburger-handler&quot;&gt;×&lt;/label&gt;
+            &lt;ul class=&quot;content&quot;&gt;
+                &lt;a href=&quot;&quot;&gt;
+                    &lt;li&gt;aaa&lt;/li&gt;
+                &lt;/a&gt;
+                &lt;a href=&quot;&quot;&gt;
+                    &lt;li&gt;bbb&lt;/li&gt;
+                &lt;/a&gt;
+                &lt;a href=&quot;&quot;&gt;
+                    &lt;li&gt;ccc&lt;/li&gt;
+                &lt;/a&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><br></p>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>

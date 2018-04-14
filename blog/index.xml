@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on @masakipedia</title>
+    <link>https://masakipedia.github.io/blog/</link>
+    <description>Recent content in Blogs on @masakipedia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 14 Apr 2018 21:40:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://masakipedia.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Swift4] Add shadow to UIView with playground</title>
+      <link>https://masakipedia.github.io/blog/2018/04/14/2018-04-14-1/</link>
+      <pubDate>Sat, 14 Apr 2018 21:40:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/14/2018-04-14-1/</guid>
+      <description>はじめに View に Shadow をつける時、色々試したいので Playground で実装しました。
+また、UIView に Shadow をつけると意外と行数が多くなるので、
+UIView の拡張に addShadow を作りました。
+
+コードはこちら import UIKit import PlaygroundSupport extension UIView { func addShadow(radius: CGFloat, shadowColor: UIColor, offset: CGSize, opacity: Float) { self.layer.shadowColor = shadowColor.cgColor self.layer.shadowOpacity = opacity self.layer.shadowOffset = offset self.layer.shadowRadius = radius self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath self.layer.shouldRasterize = true self.layer.rasterizationScale = UIScreen.main.scale } } let baseView = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 400)) let shadowView = UIView(frame: CGRect(x: 100, y: 100, width: 200, height: 200)) shadowView.</description>
+    </item>
+    
+    <item>
+      <title>[GPGPU] Overview of GPGPU</title>
+      <link>https://masakipedia.github.io/blog/2018/04/13/2018-02-13-1/</link>
+      <pubDate>Fri, 13 Apr 2018 11:50:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/13/2018-02-13-1/</guid>
+      <description>はじめに 大学4年になり、GPGPUについての研究を考えているので、
+GPGPUについての概要をまとめます。
+
+GPGPU とは GPGPU (General-purpose computing on graphics processing unit; GPUによる汎用計算) とは、
+GPUの演算資源を画像処理以外の目的に応用する技術のことです。[1]
+
+GPU とは GPUとは、CPUと比べて並列計算に優れた演算装置です。
+そのため、CPUとはコア数が大きく異なります。
+ GPU CPU のコア数を比較   コア数   NVIDIA GeForce GTX 750 Ti [2] 640   Intel Core i7-8709G [3] 4   
+主に画像処理の演算に使われているようです。
+
+GPGPU の活用領域 GPU を開発している NVIDIA の DEVELOPER サイト[4]には次のカテゴリが示されています。
+ Deep Learning
+ Autonomous Vehicles
+ Virtual Reality
+ Game Development</description>
+    </item>
+    
+    <item>
+      <title>[Swift4] UITableViewController with playground (Fix Header View)</title>
+      <link>https://masakipedia.github.io/blog/2018/04/12/2018-04-12-1/</link>
+      <pubDate>Thu, 12 Apr 2018 21:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/12/2018-04-12-1/</guid>
+      <description>はじめに UITableViewController を使う機会が多いので、
+色々試せるように Playground で動くコードを作りました。
+ちなみに、HeaderView は固定しています。(SafeArea使用)
+
+コードはこちら import UIKit import PlaygroundSupport import UIKit class TableViewController: UIViewController { let items: [String] = [&amp;quot;Cell_1&amp;quot;, &amp;quot;Cell_2&amp;quot;, &amp;quot;Cell_3&amp;quot;, &amp;quot;Cell_4&amp;quot;, &amp;quot;Cell_5&amp;quot;] var tableView: UITableView! var headerView: UIView! } // MARK: - Handler extension TableViewController: UITableViewDelegate { override func viewDidLoad() { super.viewDidLoad() tableView = UITableView(frame: self.view.frame) tableView.register(UITableViewCell.self, forCellReuseIdentifier: &amp;quot;cell&amp;quot;) tableView.dataSource = self tableView.delegate = self tableView.tableFooterView = UIView() // Eliminate the line where there is no cell.</description>
+    </item>
+    
+    <item>
+      <title>[Go] Write CSV file</title>
+      <link>https://masakipedia.github.io/blog/2018/04/09/2018-04-09-1/</link>
+      <pubDate>Mon, 09 Apr 2018 11:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/09/2018-04-09-1/</guid>
+      <description>はじめに Go言語でCSVファイルを生成する方法を確認したいと思います。
+
+Go でCSVファイル生成 &amp;amp; 書き込み コードは以下になります。
+ リファレンス : https://golang.org/pkg/encoding/csv/  
+package main import ( &amp;quot;encoding/csv&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; ) func main() { file, err := os.Create(&amp;quot;./samples.csv&amp;quot;) if err != nil { log.Println(err) } defer file.Close() writer := csv.NewWriter(file) writer.WriteAll(samples) writer.Flush() }</description>
+    </item>
+    
+    <item>
+      <title>[CSS] Make hamburger menu with only css</title>
+      <link>https://masakipedia.github.io/blog/2018/04/06/2018-04-06-1/</link>
+      <pubDate>Fri, 06 Apr 2018 22:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/06/2018-04-06-1/</guid>
+      <description>はじめに ハンバーガーメニューをJavaScript等を使わず、CSSのみでシンプルに作りました。
+ちなみに、このWebサイトの画面を狭めると出てくるのは、このハンバーガーメニューです。
+
+コードはこちら 
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt; .hamburger-menu #hamburger-handler { display: none; } .hamburger-menu .content { display: none; } .hamburger-menu .cross { display: none; left: 0px; top: 0px; } .hamburger-menu #hamburger-handler:checked ~ .content { display: list-item; } .hamburger-menu #hamburger-handler:checked ~ .cross { display: block; } .hamburger-menu #hamburger-handler:checked ~ .hamburger { display: none; } .hamburger-menu ul { list-style: none; padding-left: 0px; } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div class=&amp;quot;hamburger-menu&amp;quot;&amp;gt; &amp;lt;input id=&amp;quot;hamburger-handler&amp;quot; type=&amp;quot;checkbox&amp;quot;&amp;gt; &amp;lt;label class=&amp;quot;hamburger&amp;quot; for=&amp;quot;hamburger-handler&amp;quot;&amp;gt;=&amp;lt;/label&amp;gt; &amp;lt;label class=&amp;quot;cross&amp;quot; for=&amp;quot;hamburger-handler&amp;quot;&amp;gt;×&amp;lt;/label&amp;gt; &amp;lt;ul class=&amp;quot;content&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt; &amp;lt;li&amp;gt;aaa&amp;lt;/li&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt; &amp;lt;li&amp;gt;bbb&amp;lt;/li&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;a href=&amp;quot;&amp;quot;&amp;gt; &amp;lt;li&amp;gt;ccc&amp;lt;/li&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;/ul&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>[Swift4] UIPageViewController with playground</title>
+      <link>https://masakipedia.github.io/blog/2018/04/05/2018-04-05/</link>
+      <pubDate>Thu, 05 Apr 2018 15:19:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/05/2018-04-05/</guid>
+      <description>はじめに   UIPageViewController の仕組みを理解するのに苦労したので、 Playgroud で試せるコードを実装しました。  コードはこちら  import UIKit import PlaygroundSupport class ContainerViewController: UIViewController { var pageViewController: UIPageViewController! // user setting let pageTotal: Int = 3 } extension ContainerViewController { override func viewDidLoad() { super.viewDidLoad() pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil) let firstViewController = generateViewControllerAtIndex(0) pageViewController.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil) pageViewController.dataSource = self self.addChildViewController(pageViewController) self.view.addSubview(pageViewController.view) } } // MARK: - DataSource extension ContainerViewController: UIPageViewControllerDataSource { func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -&amp;gt; UIViewController?</description>
+    </item>
+    
+  </channel>
+</rss>

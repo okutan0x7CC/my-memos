@@ -1,0 +1,17 @@
+
+body {
+    margin: 0pt;
+}
+
+.all {
+    margin: auto;
+    max-width: 700pt;
+    min-width: 200pt;
+    font-family: 'Lato';
+    overflow-x: hidden;
+}
+
+.all a {
+    text-decoration: none;
+    color: #000;
+}

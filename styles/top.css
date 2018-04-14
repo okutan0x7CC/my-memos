@@ -1,0 +1,11 @@
+
+.top .introduction {
+    margin-top: 33pt;
+    text-align: center;
+    padding: 30pt;
+}
+
+.top .introduction img {
+    border-radius: 50%;
+    width: 50pt;
+}

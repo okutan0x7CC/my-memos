@@ -1,0 +1,105 @@
+
+.header {
+    border-bottom: 2pt solid rgb(243, 244, 244);
+    position: fixed; 
+    max-width: 700pt;
+    min-width: 200pt;
+    width: 100%;
+    background-color: #FFF;
+}
+
+/* .hamburger-menu */
+
+.header .hamburger-menu {
+    position: absolute;
+    margin: auto;
+    max-width: 700pt;
+    min-width: 300pt;
+    width: 100%;
+    display: none;
+    font-size: 33pt;
+}
+
+.header .hamburger-menu .hamburger span {
+    padding: 0px 12.5pt;
+    margin-bottom: 1pt;
+}
+
+.header .hamburger-menu .cross span {
+    padding: 0px 12.5pt;
+}
+
+.header .hamburger-menu ul {
+    list-style: none;
+    padding-left: 10pt;
+    background-color:rgb(243, 244, 244);
+}
+
+.header .hamburger-menu #hamburger-handler {
+    display: none;
+}
+
+.header .hamburger-menu .content {
+    display: none;
+    font-size: 15pt;
+    margin-top: 0pt;
+}
+
+.header .hamburger-menu .content li {
+    padding: 10pt 5pt;
+    border-bottom: 1pt solid #FFF;    
+}
+
+.header .hamburger-menu .cross {
+    display: none;
+    left: 0px;
+    top: 0px;
+}
+
+.header .hamburger-menu #hamburger-handler:checked ~ .content {
+    display: list-item;
+}
+
+.header .hamburger-menu #hamburger-handler:checked ~ .cross {
+    display: block;
+}
+
+.header .hamburger-menu #hamburger-handler:checked ~ .hamburger {
+    display: none;
+}
+
+@media only screen and (max-width: 500pt) { 
+    .header .bar-menu {
+        visibility: hidden;
+    }
+
+    .header .hamburger-menu {
+        display: block;
+    }
+}
+
+
+/* .bar-menu */
+
+.header .bar-menu {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .bar-menu ul {
+    list-style: none;
+    padding-left: 0px;
+    display: flex;
+}
+
+.header .bar-menu ul.left-link {
+    justify-content: flex-start;
+}
+
+.header .bar-menu ul.right-link {
+    justify-content: flex-end;
+}
+
+.header .bar-menu li {
+    margin: 0px 10px;
+}

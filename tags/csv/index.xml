@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Csv on @masakipedia</title>
+    <link>https://masakipedia.github.io/tags/csv/</link>
+    <description>Recent content in Csv on @masakipedia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 09 Apr 2018 11:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://masakipedia.github.io/tags/csv/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Go] Write CSV file</title>
+      <link>https://masakipedia.github.io/blog/2018/04/09/2018-04-09-1/</link>
+      <pubDate>Mon, 09 Apr 2018 11:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/09/2018-04-09-1/</guid>
+      <description>はじめに Go言語でCSVファイルを生成する方法を確認したいと思います。
+
+Go でCSVファイル生成 &amp;amp; 書き込み コードは以下になります。
+ リファレンス : https://golang.org/pkg/encoding/csv/  
+package main import ( &amp;quot;encoding/csv&amp;quot; &amp;quot;log&amp;quot; &amp;quot;os&amp;quot; ) func main() { file, err := os.Create(&amp;quot;./samples.csv&amp;quot;) if err != nil { log.Println(err) } defer file.Close() writer := csv.NewWriter(file) writer.WriteAll(samples) writer.Flush() }</description>
+    </item>
+    
+  </channel>
+</rss>

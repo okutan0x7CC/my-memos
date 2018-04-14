@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [GPGPU] Overview of GPGPU
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38716392-74c9373c-3f1b-11e8-90a2-37ddf57bf300.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            GPGPU
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-13</p>                    
+                    
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>大学4年になり、GPGPUについての研究を考えているので、</p>
+
+<p>GPGPUについての概要をまとめます。</p>
+
+<p><br></p>
+
+<h2 id="gpgpu-とは">GPGPU とは</h2>
+
+<p>GPGPU (General-purpose computing on graphics processing unit; GPUによる汎用計算) とは、</p>
+
+<p>GPUの演算資源を画像処理以外の目的に応用する技術のことです。<a href="#link_1">[1]</a></p>
+
+<p><br></p>
+
+<h2 id="gpu-とは">GPU とは</h2>
+
+<p>GPUとは、CPUと比べて並列計算に優れた演算装置です。</p>
+
+<p>そのため、CPUとはコア数が大きく異なります。</p>
+
+<table>
+    <caption>GPU CPU のコア数を比較</caption>
+    <tr>
+        <th></th>
+        <th>コア数</th>
+    </tr>
+    <tr>
+        <th class="key">NVIDIA GeForce GTX 750 Ti <a href="#link_2">[2]</a></th>
+        <th class="value">640</th>
+    </tr>
+    <tr>
+        <th class="key">Intel Core i7-8709G <a href="#link_3">[3]</a></th>
+        <th class="value">4</th>
+    </tr>
+ </table>
+
+<p><br></p>
+
+<p>主に画像処理の演算に使われているようです。</p>
+
+<p><br></p>
+
+<h2 id="gpgpu-の活用領域">GPGPU の活用領域</h2>
+
+<p>GPU を開発している NVIDIA の DEVELOPER サイト<a href="#link_4">[4]</a>には次のカテゴリが示されています。</p>
+
+<ul>
+<li><p>Deep Learning</p></li>
+
+<li><p>Autonomous Vehicles</p></li>
+
+<li><p>Virtual Reality</p></li>
+
+<li><p>Game Development</p></li>
+
+<li><p>Accelerated Computing</p></li>
+
+<li><p>Design &amp; Visualization</p></li>
+
+<li><p>Autonomous Machines</p></li>
+
+<li><p>Smart Cities</p></li>
+</ul>
+
+<p>これらの詳しいことは、今後まとめます。</p>
+
+<p><br></p>
+
+<h2 id="gpgpu-の今後">GPGPU の今後</h2>
+
+<p>活用領域を見る限り、AI・DeepLearning が活躍し始めたこの時代なので、</p>
+
+<p>ますます発展していくと考えられます。</p>
+
+<p><br></p>
+
+<h2 id="gpgpu-の開発方法">GPGPU の開発方法</h2>
+
+<p>GPGPUの開発には以下のツールが用いられるようです。</p>
+
+<ul>
+<li><p>CUDA</p></li>
+
+<li><p>OpenCL</p></li>
+
+<li><p>OpenGL Compute Shader</p></li>
+
+<li><p>DirectX DirectCompute</p></li>
+
+<li><p>C++ AMP</p></li>
+
+<li><p>HIP</p></li>
+
+<li><p>OpenACC</p></li>
+
+<li><p>OpenMP</p></li>
+
+<li><p>SYCL</p></li>
+</ul>
+
+<p>今後、深掘りしていきます。</p>
+
+<p><br></p>
+
+<h2 id="まとめ">まとめ</h2>
+
+<p>GPGPUは 並列処理の得意な GPU を、AI・DeepLearning 等に応用する技術です。</p>
+
+<p>今後は、活用領域の詳細や、開発方法について調べていきます。</p>
+
+<p><br></p>
+
+<h2 id="参考">参考</h2>
+
+<ul>
+<li><p>[1] Wikipedia : <a id="link_1"><a href="https://ja.wikipedia.org/wiki/GPGPU">https://ja.wikipedia.org/wiki/GPGPU</a></a></p></li>
+
+<li><p>[2] GeForce GTX 750 Ti  : <a id="link_2"><a href="http://www.nvidia.co.jp/object/geforce-gtx-750-ti-jp.html#pdpContent=2">http://www.nvidia.co.jp/object/geforce-gtx-750-ti-jp.html#pdpContent=2</a></a></p></li>
+
+<li><p>[3] Intel Core i7-8709G  : <a id="link_3"><a href="https://www.intel.co.jp/content/www/jp/ja/products/processors/core/i7-processors/i7-8709g.html">https://www.intel.co.jp/content/www/jp/ja/products/processors/core/i7-processors/i7-8709g.html</a></a></p></li>
+
+<li><p>[4] NVIDIA Developer : <a id="link_4"><a href="https://developer.nvidia.com/">https://developer.nvidia.com/</a></a></p></li>
+</ul>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] UIPageViewController with playground
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38424615-9b605de6-39ec-11e8-9a46-4cc8466af85d.gif">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            xcode9
+                        </li>
+                    
+                        <li class="blog-tag">
+                            UIPageViewController
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-05</p>                    
+                    <h2>
+    はじめに
+</h2>
+<p>
+    UIPageViewController の仕組みを理解するのに苦労したので、
+    Playgroud で試せるコードを実装しました。
+</p>
+
+<br>
+
+<h2>
+    コードはこちら
+</h2>
+
+<pre><code>import UIKit
+import PlaygroundSupport
+
+
+class ContainerViewController: UIViewController {
+
+    var pageViewController: UIPageViewController!
+
+    // user setting
+    let pageTotal: Int = 3
+
+}
+
+
+extension ContainerViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        pageViewController = UIPageViewController(transitionStyle: .scroll,
+                                                navigationOrientation: .horizontal,
+                                                options: nil)
+
+        let firstViewController = generateViewControllerAtIndex(0)
+        pageViewController.setViewControllers([firstViewController],
+                                            direction: .forward,
+                                            animated: true,
+                                            completion: nil)
+
+        pageViewController.dataSource = self
+
+        self.addChildViewController(pageViewController)
+        self.view.addSubview(pageViewController.view)
+    }
+
+}
+
+
+// MARK: - DataSource
+
+extension ContainerViewController: UIPageViewControllerDataSource {
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -&gt; UIViewController? {
+        let pageIndex = indexOfViewController(viewController as! RandomColorViewController)
+        if pageIndex == pageTotal - 1 {
+            return nil
+        }
+        return generateViewControllerAtIndex(pageIndex + 1)
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -&gt; UIViewController? {
+        let pageIndex = indexOfViewController(viewController as! RandomColorViewController)
+        if pageIndex == 0 {
+            return nil
+        }
+        return generateViewControllerAtIndex(pageIndex - 1)
+    }
+
+    func generateViewControllerAtIndex(_ index: Int) -&gt; RandomColorViewController {
+        let nextVC = RandomColorViewController()
+        nextVC.index = index
+        nextVC.view.backgroundColor = UIColor().getRandomColor()
+        return nextVC
+    }
+
+    func indexOfViewController(_ viewController: RandomColorViewController) -&gt; Int {
+        return viewController.index
+    }
+
+}
+
+
+class RandomColorViewController: UIViewController {
+
+    var index: Int!
+
+}
+
+extension UIColor {
+
+    func getRandomColor() -&gt; UIColor{
+        return UIColor(red: CGFloat(drand48()),
+                    green: CGFloat(drand48()),
+                    blue: CGFloat(drand48()),
+                    alpha: 1.0)
+
+    }
+
+}
+
+PlaygroundPage.current.liveView = ContainerViewController()
+</code></pre>
+
+<p><br></p>
+
+<p><h2>
+    ハマったところ
+</h2>
+<p>
+    ・UIpageViewControllerDataSource で返す UIViewController は、
+    新しく生成したインスタンスである必要がある点です。
+</p>
+<p>
+    ・DataSource でインスタンス生成を行わず、
+    viewDidLoad などで全ての UIViewController を生成すると、真っ黒になりました。
+</p></p>
+
+<p><br>
+<br>
+<br></p>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>

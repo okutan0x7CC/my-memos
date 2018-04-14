@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gpgpu on @masakipedia</title>
+    <link>https://masakipedia.github.io/tags/gpgpu/</link>
+    <description>Recent content in Gpgpu on @masakipedia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 13 Apr 2018 11:50:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://masakipedia.github.io/tags/gpgpu/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[GPGPU] Overview of GPGPU</title>
+      <link>https://masakipedia.github.io/blog/2018/04/13/2018-02-13-1/</link>
+      <pubDate>Fri, 13 Apr 2018 11:50:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/13/2018-02-13-1/</guid>
+      <description>はじめに 大学4年になり、GPGPUについての研究を考えているので、
+GPGPUについての概要をまとめます。
+
+GPGPU とは GPGPU (General-purpose computing on graphics processing unit; GPUによる汎用計算) とは、
+GPUの演算資源を画像処理以外の目的に応用する技術のことです。[1]
+
+GPU とは GPUとは、CPUと比べて並列計算に優れた演算装置です。
+そのため、CPUとはコア数が大きく異なります。
+ GPU CPU のコア数を比較   コア数   NVIDIA GeForce GTX 750 Ti [2] 640   Intel Core i7-8709G [3] 4   
+主に画像処理の演算に使われているようです。
+
+GPGPU の活用領域 GPU を開発している NVIDIA の DEVELOPER サイト[4]には次のカテゴリが示されています。
+ Deep Learning
+ Autonomous Vehicles
+ Virtual Reality
+ Game Development</description>
+    </item>
+    
+  </channel>
+</rss>

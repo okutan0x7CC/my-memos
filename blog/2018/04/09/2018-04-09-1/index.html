@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/1/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Go] Write CSV file
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38478469-d309a438-3bf3-11e8-9abe-e84a262c47a1.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            go
+                        </li>
+                    
+                        <li class="blog-tag">
+                            csv
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-09</p>                    
+                    
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>Go言語でCSVファイルを生成する方法を確認したいと思います。</p>
+
+<p><br></p>
+
+<h2 id="go-でcsvファイル生成-書き込み">Go でCSVファイル生成 &amp; 書き込み</h2>
+
+<p>コードは以下になります。</p>
+
+<ul>
+<li>リファレンス : <a src="https://golang.org/pkg/encoding/csv/"><a href="https://golang.org/pkg/encoding/csv/">https://golang.org/pkg/encoding/csv/</a></a></li>
+</ul>
+
+<p><br></p>
+
+<pre><code>package main
+
+import (
+    &quot;encoding/csv&quot;
+    &quot;log&quot;
+    &quot;os&quot;
+)
+
+
+
+func main() {
+    file, err := os.Create(&quot;./samples.csv&quot;)
+    if err != nil {
+        log.Println(err)
+    }
+    defer file.Close()
+
+    writer := csv.NewWriter(file)
+    writer.WriteAll(samples)
+
+    writer.Flush()
+}
+</code></pre>
+
+<p><br></p>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>
