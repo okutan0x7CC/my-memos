@@ -34,7 +34,7 @@
                     <li>@masakipedia</li>
                 </a>
             
-                <a href="/products/1/">
+                <a href="/products/">
                     <li>Products</li>
                 </a>
             
@@ -56,7 +56,7 @@
                     <li>@masakipedia</li>
                 </a>
             
-                <a href="/products/1/">
+                <a href="/products/">
                     <li>Products</li>
                 </a>
             
@@ -110,11 +110,11 @@
 
 <p>色々試せるように Playground で動くコードを作りました。</p>
 
-<p>ちなみに、HeaderView は固定しています。(SafeArea使用)</p>
+<p>ちなみに、HeaderView は固定しています。</p>
 
 <p><br></p>
 
-<h2 id="コードはこちら">コードはこちら</h2>
+<h2 id="navigationbar-がない場合">NavigationBar がない場合</h2>
 
 <pre><code>import UIKit
 import PlaygroundSupport
@@ -140,20 +140,29 @@ extension TableViewController: UITableViewDelegate {
 
         super.viewDidLoad()
 
+        // TableView
+
         tableView = UITableView(frame: self.view.frame)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: &quot;cell&quot;)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView() // Eliminate the line where there is no cell.
 
-        headerView = UIView(frame: CGRect(x: 0,
-                                        y: -(self.view.safeAreaInsets.top + tableView.contentInset.top),
-                                        width: self.view.frame.width,
-                                        height: self.view.frame.height * 0.1))
-        tableView.contentInset.top = headerView.frame.height
-        headerView.backgroundColor = .red
-        tableView.addSubview(headerView)
 
+        // HeaderView
+
+        let headerHeight = self.view.frame.height * 0.1
+        let statusHeight = UIApplication.shared.statusBarFrame.size.height
+        headerView = UIView(frame: CGRect(x: 0,
+                                        y: -(headerHeight + statusHeight),
+                                        width: self.view.frame.width,
+                                        height: headerHeight))
+        tableView.contentInset.top = headerHeight + statusHeight
+        tableView.contentOffset = CGPoint(x: 0, y: -(headerHeight + statusHeight))
+        headerView.backgroundColor = .red
+
+
+        tableView.addSubview(headerView)
         self.view.addSubview(tableView)
 
     }
@@ -196,19 +205,135 @@ extension TableViewController {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
-        guard headerView != nil else {
+        guard self.headerView != nil else {
             return
         }
-        if scrollView.contentOffset.y &lt; -(self.view.safeAreaInsets.top + tableView.contentInset.top) {
+        if scrollView.contentOffset.y &lt; -self.headerView.frame.height {
             self.headerView.frame = CGRect(x: 0,
-                                        y: scrollView.contentOffset.y + self.view.safeAreaInsets.top,
-                                        width: self.view.frame.width,
-                                        height: headerView.frame.height)
+                                        y: scrollView.contentOffset.y,
+                                        width: self.headerView.frame.width,
+                                        height: self.headerView.frame.height)
         } else {
             self.headerView.frame = CGRect(x: 0,
-                                        y: -tableView.contentInset.top,
+                                        y: -self.headerView.frame.height,
+                                        width: self.headerView.frame.width,
+                                        height: self.headerView.frame.height)
+        }
+
+    }
+
+}
+
+
+PlaygroundPage.current.liveView = TableViewController()
+</code></pre>
+
+<p><br></p>
+
+<h2 id="navigationbar-がある場合">NavigationBar がある場合</h2>
+
+<pre><code>import UIKit
+import PlaygroundSupport
+
+
+import UIKit
+
+class TableViewController: UIViewController {
+
+    let items: [String] = [&quot;Cell_1&quot;, &quot;Cell_2&quot;, &quot;Cell_3&quot;, &quot;Cell_4&quot;, &quot;Cell_5&quot;]
+    var tableView: UITableView!
+    var headerView: UIView!
+
+}
+
+
+// MARK: - Handler
+
+extension TableViewController: UITableViewDelegate {
+
+
+    override func viewDidLoad() {
+
+        super.viewDidLoad()
+
+        // TableView
+
+        tableView = UITableView(frame: self.view.frame)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: &quot;cell&quot;)
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableFooterView = UIView() // Eliminate the line where there is no cell.
+
+
+        // HeaderView
+
+        let headerHeight = self.view.frame.height * 0.1
+        let navStatusHeight = self.navigationController!.navigationBar.bounds.height + UIApplication.shared.statusBarFrame.size.height
+        headerView = UIView(frame: CGRect(x: 0,
+                                        y: -(headerHeight + navStatusHeight),
                                         width: self.view.frame.width,
-                                        height: headerView.frame.height)
+                                        height: headerHeight))
+        tableView.contentInset.top = headerHeight + navStatusHeight
+        tableView.contentOffset = CGPoint(x: 0, y: -(headerHeight + navStatusHeight))
+        headerView.backgroundColor = .red
+
+
+        tableView.addSubview(headerView)
+        self.view.addSubview(tableView)
+
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        print(&quot;Num: \(indexPath.row)&quot;)
+        print(&quot;Value: \(items[indexPath.row])&quot;)
+
+    }
+
+}
+
+
+// MARK: - DataSource
+
+extension TableViewController:  UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+
+        return items.count
+
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: &quot;cell&quot;, for: indexPath as IndexPath)
+        cell.textLabel!.text = &quot;\(items[indexPath.row])&quot;
+
+        return cell
+
+    }
+
+}
+
+
+// MARK: - Fix header view when scrolling
+
+extension TableViewController {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        guard self.headerView != nil else {
+            return
+        }
+        if scrollView.contentOffset.y &lt; -self.headerView.frame.height {
+            self.headerView.frame = CGRect(x: 0,
+                                        y: scrollView.contentOffset.y,
+                                        width: self.headerView.frame.width,
+                                        height: self.headerView.frame.height)
+        } else {
+            self.headerView.frame = CGRect(x: 0,
+                                        y: -self.headerView.frame.height,
+                                        width: self.headerView.frame.width,
+                                        height: self.headerView.frame.height)
         }
 
     }

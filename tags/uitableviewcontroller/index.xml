@@ -19,9 +19,9 @@
       <guid>https://masakipedia.github.io/blog/2018/04/12/2018-04-12-1/</guid>
       <description>はじめに UITableViewController を使う機会が多いので、
 色々試せるように Playground で動くコードを作りました。
-ちなみに、HeaderView は固定しています。(SafeArea使用)
+ちなみに、HeaderView は固定しています。
 
-コードはこちら import UIKit import PlaygroundSupport import UIKit class TableViewController: UIViewController { let items: [String] = [&amp;quot;Cell_1&amp;quot;, &amp;quot;Cell_2&amp;quot;, &amp;quot;Cell_3&amp;quot;, &amp;quot;Cell_4&amp;quot;, &amp;quot;Cell_5&amp;quot;] var tableView: UITableView! var headerView: UIView! } // MARK: - Handler extension TableViewController: UITableViewDelegate { override func viewDidLoad() { super.viewDidLoad() tableView = UITableView(frame: self.view.frame) tableView.register(UITableViewCell.self, forCellReuseIdentifier: &amp;quot;cell&amp;quot;) tableView.dataSource = self tableView.delegate = self tableView.tableFooterView = UIView() // Eliminate the line where there is no cell.</description>
+NavigationBar がない場合 import UIKit import PlaygroundSupport import UIKit class TableViewController: UIViewController { let items: [String] = [&amp;quot;Cell_1&amp;quot;, &amp;quot;Cell_2&amp;quot;, &amp;quot;Cell_3&amp;quot;, &amp;quot;Cell_4&amp;quot;, &amp;quot;Cell_5&amp;quot;] var tableView: UITableView! var headerView: UIView! } // MARK: - Handler extension TableViewController: UITableViewDelegate { override func viewDidLoad() { super.viewDidLoad() // TableView tableView = UITableView(frame: self.view.frame) tableView.register(UITableViewCell.self, forCellReuseIdentifier: &amp;quot;cell&amp;quot;) tableView.dataSource = self tableView.delegate = self tableView.tableFooterView = UIView() // Eliminate the line where there is no cell.</description>
     </item>
     
   </channel>
