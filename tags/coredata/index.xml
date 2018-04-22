@@ -19,6 +19,9 @@
       <guid>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</guid>
       <description>はじめに Core Data の勉強をまとめておきます。
 
+引用 : Core Dataプログラミングガイド
+https://developer.apple.com/jp/documentation/Cocoa&amp;hellip;
+
 Core Data とは  Core Data = アプリケーションのモデル階層オブジェクトを管理するためのフレームワーク  できること  オブジェクトの永続化などが可能 処理が自動で最適化される    
 Core Data の構成  Core Data スタック = データストアとアプリケーションのオブジェクトを仲介するフレームワークオブジェクトの集合
  フレームワークオブジェクト
@@ -26,8 +29,7 @@ Core Data の構成  Core Data スタック = データストアとアプリケ�
  Core Data スタックによってアクセスされるデータを記述するもの   永続ストアコーディネータ（NSPersistentStoreCoordinator）
  エンティティのインスタンス実体化を担当する 既存のインスタンスを永続ストア（NSPersistentStore）から取得する  管理オブジェクトコンテキスト(NSManagedObjectContext)
  作業領域 オブジェクトをフェッチする場合など、一旦作業領域にコピーされる     
-Core Data の使用手順 Core Dataスタック の生成 Core Data スタックを初期化することで、データ要求および生成の準備が整う。 よって、アプリケーションのデータを生成する前に実行する。
-&amp;ndash;[ Swift ] Core Dataスタックを生成するコード例&amp;ndash;</description>
+Core Data の使用手順 Core Dataスタック の生成 Core Data スタックを初期化することで、データ要求および生成の準備が整う。 よって、アプリケーションのデータを生成する前に実行する。</description>
     </item>
     
   </channel>
