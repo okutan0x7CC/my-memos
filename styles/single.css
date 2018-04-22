@@ -3,11 +3,12 @@
     text-align: center;
     margin: 68pt 0pt;
     font-size: 24pt;
+    margin-bottom: 35pt;
 }
 
 .blog-article .blog-image-container {
     object-fit: contain;
-    height: 320pt;
+    height: 250pt;
     text-align: center;
 }
 

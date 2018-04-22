@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Coredata on @masakipedia</title>
+    <link>https://masakipedia.github.io/tags/coredata/</link>
+    <description>Recent content in Coredata on @masakipedia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 22 Apr 2018 11:50:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://masakipedia.github.io/tags/coredata/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Swift4] How to use CoreData</title>
+      <link>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</link>
+      <pubDate>Sun, 22 Apr 2018 11:50:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</guid>
+      <description>はじめに Core Data の勉強をまとめておきます。
+
+Core Data とは  Core Data = アプリケーションのモデル階層オブジェクトを管理するためのフレームワーク  できること  オブジェクトの永続化などが可能 処理が自動で最適化される    
+Core Data の構成  Core Data スタック = データストアとアプリケーションのオブジェクトを仲介するフレームワークオブジェクトの集合
+ フレームワークオブジェクト
+ 管理オブジェクトモデル（NSManagedObjectModel）
+ Core Data スタックによってアクセスされるデータを記述するもの   永続ストアコーディネータ（NSPersistentStoreCoordinator）
+ エンティティのインスタンス実体化を担当する 既存のインスタンスを永続ストア（NSPersistentStore）から取得する  管理オブジェクトコンテキスト(NSManagedObjectContext)
+ 作業領域 オブジェクトをフェッチする場合など、一旦作業領域にコピーされる     
+Core Data の使用手順 Core Dataスタック の生成 Core Data スタックを初期化することで、データ要求および生成の準備が整う。 よって、アプリケーションのデータを生成する前に実行する。
+&amp;ndash;[ Swift ] Core Dataスタックを生成するコード例&amp;ndash;</description>
+    </item>
+    
+  </channel>
+</rss>

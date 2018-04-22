@@ -6,10 +6,29 @@
     <description>Recent content in Blogs on @masakipedia</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 14 Apr 2018 21:40:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 22 Apr 2018 11:50:00 +0900</lastBuildDate>
     
 	<atom:link href="https://masakipedia.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Swift4] How to use CoreData</title>
+      <link>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</link>
+      <pubDate>Sun, 22 Apr 2018 11:50:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</guid>
+      <description>はじめに Core Data の勉強をまとめておきます。
+
+Core Data とは  Core Data = アプリケーションのモデル階層オブジェクトを管理するためのフレームワーク  できること  オブジェクトの永続化などが可能 処理が自動で最適化される    
+Core Data の構成  Core Data スタック = データストアとアプリケーションのオブジェクトを仲介するフレームワークオブジェクトの集合
+ フレームワークオブジェクト
+ 管理オブジェクトモデル（NSManagedObjectModel）
+ Core Data スタックによってアクセスされるデータを記述するもの   永続ストアコーディネータ（NSPersistentStoreCoordinator）
+ エンティティのインスタンス実体化を担当する 既存のインスタンスを永続ストア（NSPersistentStore）から取得する  管理オブジェクトコンテキスト(NSManagedObjectContext)
+ 作業領域 オブジェクトをフェッチする場合など、一旦作業領域にコピーされる     
+Core Data の使用手順 Core Dataスタック の生成 Core Data スタックを初期化することで、データ要求および生成の準備が整う。 よって、アプリケーションのデータを生成する前に実行する。
+&amp;ndash;[ Swift ] Core Dataスタックを生成するコード例&amp;ndash;</description>
+    </item>
     
     <item>
       <title>[Swift4] Add shadow to UIView with playground</title>
@@ -46,19 +65,6 @@ GPGPU の活用領域 GPU を開発している NVIDIA の DEVELOPER サイト[4
  Autonomous Vehicles
  Virtual Reality
  Game Development</description>
-    </item>
-    
-    <item>
-      <title>[Swift4] UITableViewController with playground (Fix Header View)</title>
-      <link>https://masakipedia.github.io/blog/2018/04/12/2018-04-12-1/</link>
-      <pubDate>Thu, 12 Apr 2018 21:00:00 +0900</pubDate>
-      
-      <guid>https://masakipedia.github.io/blog/2018/04/12/2018-04-12-1/</guid>
-      <description>はじめに UITableViewController を使う機会が多いので、
-色々試せるように Playground で動くコードを作りました。
-ちなみに、HeaderView は固定しています。
-
-NavigationBar がない場合 import UIKit import PlaygroundSupport import UIKit class TableViewController: UIViewController { let items: [String] = [&amp;quot;Cell_1&amp;quot;, &amp;quot;Cell_2&amp;quot;, &amp;quot;Cell_3&amp;quot;, &amp;quot;Cell_4&amp;quot;, &amp;quot;Cell_5&amp;quot;] var tableView: UITableView! var headerView: UIView! } // MARK: - Handler extension TableViewController: UITableViewDelegate { override func viewDidLoad() { super.viewDidLoad() // TableView tableView = UITableView(frame: self.view.frame) tableView.register(UITableViewCell.self, forCellReuseIdentifier: &amp;quot;cell&amp;quot;) tableView.dataSource = self tableView.delegate = self tableView.tableFooterView = UIView() // Eliminate the line where there is no cell.</description>
     </item>
     
     <item>

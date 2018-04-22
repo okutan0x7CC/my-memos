@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] How to use CoreData
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/39091095-1c19f1b2-4628-11e8-9fc1-1104f4d54126.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
+                        </li>
+                    
+                        <li class="blog-tag">
+                            CoreData
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-22</p>                    
+                    
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>Core Data の勉強をまとめておきます。</p>
+
+<p><br></p>
+
+<h2 id="core-data-とは">Core Data とは</h2>
+
+<ul>
+<li>Core Data = アプリケーションのモデル階層オブジェクトを管理するためのフレームワーク
+
+<ul>
+<li>できること
+
+<ul>
+<li>オブジェクトの永続化などが可能</li>
+<li>処理が自動で最適化される</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<h2 id="core-data-の構成">Core Data の構成</h2>
+
+<ul>
+<li><p>Core Data スタック = データストアとアプリケーションのオブジェクトを仲介するフレームワークオブジェクトの集合</p>
+
+<ul>
+<li><p>フレームワークオブジェクト</p>
+
+<ul>
+<li><p>管理オブジェクトモデル（NSManagedObjectModel）</p>
+
+<ul>
+<li>Core Data スタックによってアクセスされるデータを記述するもの
+<br /></li>
+</ul></li>
+
+<li><p>永続ストアコーディネータ（NSPersistentStoreCoordinator）</p>
+
+<ul>
+<li>エンティティのインスタンス実体化を担当する</li>
+<li>既存のインスタンスを永続ストア（NSPersistentStore）から取得する</li>
+</ul></li>
+
+<li><p>管理オブジェクトコンテキスト(NSManagedObjectContext)</p>
+
+<ul>
+<li>作業領域</li>
+<li>オブジェクトをフェッチする場合など、一旦作業領域にコピーされる</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<h2 id="core-data-の使用手順">Core Data の使用手順</h2>
+
+<h3 id="core-dataスタック-の生成">Core Dataスタック の生成</h3>
+
+<p>Core Data スタックを初期化することで、データ要求および生成の準備が整う。
+よって、アプリケーションのデータを生成する前に実行する。</p>
+
+<p><strong>&ndash;[ Swift ] Core Dataスタックを生成するコード例&ndash;</strong></p>
+
+<pre><code>import UIKit
+import CoreData
+
+class DataController: NSObject {
+
+    var managedObjectContext: NSManagedObjectContext
+
+    init() {
+
+        // This resource is the same name as your xcdatamodeld contained in your project.
+
+        guard let modelURL = NSBundle.mainBundle().URLForResource(&quot;DataModel&quot;, withExtension:&quot;momd&quot;) else {
+            fatalError(&quot;Error loading model from bundle&quot;)
+        }
+
+
+        // The managed object model for the application.It is a fatal error for the application not to be able to find and load its model.
+
+        guard let mom = NSManagedObjectModel(contentsOfURL: modelURL) else {
+            fatalError(&quot;Error initializing mom from: \(modelURL)&quot;)
+        }
+        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        managedObjectContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = psc
+
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+            let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
+            let docURL = urls[urls.endIndex-1]
+
+
+            /* The directory the application uses to store the Core Data store file.
+            This code uses a file named &quot;DataModel.sqlite&quot; in the application's documents directory.
+            */
+
+            let storeURL = docURL.URLByAppendingPathComponent(&quot;DataModel.sqlite&quot;)
+            do {
+                try psc.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil)
+            } catch {
+                fatalError(&quot;Error migrating store: \(error)&quot;)
+            }
+        }
+    }
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="管理オブジェクトの生成">管理オブジェクトの生成</h3>
+
+<p>NSManagedObject は Core Data の基本的な操作を実装しています。</p>
+
+<p><strong>&ndash;[ Swift ] インスタンス生成の例&ndash;</strong></p>
+
+<pre><code>let employee = NSEntityDescription.insertNewObjectForEntityForName(&quot;Employee&quot;, inManagedObjectContext: self.managedObjectContext) as! AAAEmployeeMO
+</code></pre>
+
+<p>AAAEmployeeMO は NSManagedObject のサブクラスです。↓</p>
+
+<pre><code>import UIKit
+import CoreData
+import Foundation
+
+class AAAEmployeeMO: NSManagedObject {
+
+    @NSManaged var name: String?
+
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="nsmanagedobjectインスタンスの保存">NSManagedObjectインスタンスの保存</h3>
+
+<p>コンテキストを明示的に保存することで、永続ストアに格納できます。</p>
+
+<pre><code>do {
+    try managedObjectContext.save()
+} catch {
+    fatalError(&quot;Failure to save context: \(error)&quot;)
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="nsmanagedobjectインスタンスのフェッチ">NSManagedObjectインスタンスのフェッチ</h3>
+
+<pre><code>let moc = managedObjectContext
+let employeesFetch = NSFetchRequest(entityName: &quot;Employee&quot;)
+
+do {
+    let fetchedEmployees = try moc.executeFetchRequest(employeesFetch) as! [AAAEmployeeMO]
+} catch {
+    fatalError(&quot;Failed to fetch employees: \(error)&quot;)
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="結果のしぼり込み">結果のしぼり込み</h3>
+
+<pre><code>let firstName = &quot;Trevor&quot;
+fetchRequest.predicate = NSPredicate(format: &quot;firstName == %@&quot;, firstName)
+</code></pre>
+
+<p><br></p>
+
+<h2 id="iosへの-core-data-の統合">iOSへの Core Data の統合</h2>
+
+<p>Core Data のCocoaバインディングをしてモデルからビューへ接続するには、NSFetchedResultsController を使用します。
+ここでは、UITableViewDataSource に接続します。</p>
+
+<h3 id="nsfetchedresultscontroller-の作成">NSFetchedResultsController の作成</h3>
+
+<pre><code>var fetchedResultsController: NSFetchedResultsController!
+
+func initializeFetchedResultsController() {
+    let request = NSFetchRequest(entityName: &quot;Person&quot;)
+    let departmentSort = NSSortDescriptor(key: &quot;department.name&quot;, ascending: true)
+    let lastNameSort = NSSortDescriptor(key: &quot;lastName&quot;, ascending: true)
+    request.sortDescriptors = [departmentSort, lastNameSort]
+
+    let moc = self.dataController.managedObjectContext
+    fetchedResultsController = NSFetchedResultsController(fetchRequest: request, 
+                                                          managedObjectContext: moc, 
+                                                          sectionNameKeyPath: &quot;department.name&quot;, 
+                                                          cacheName: &quot;rootCache&quot;)
+    fetchedResultsController.delegate = self
+
+    do {
+        try fetchedResultsController.performFetch()
+    } catch {
+        fatalError(&quot;Failed to initialize FetchedResultsController: \(error)&quot;)
+    }
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="uitableviewdatasource-の統合">UITableViewDataSource の統合</h3>
+
+<pre><code>func configureCell(cell: UITableViewCell, indexPath: NSIndexPath) {
+    let employee = fetchedResultsController.objectAtIndexPath(indexPath) as! AAAEmployeeMO
+
+    // Populate cell from the NSManagedObject instance
+    print(&quot;Object for configuration: \(object)&quot;)
+}
+
+override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -&gt; UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier(&quot;cellIdentifier&quot;, forIndexPath: indexPath) as! UITableViewCell
+
+    // Set up the cell
+    configureCell(cell, indexPath: indexPath)
+    return cell
+}
+
+override func numberOfSectionsInTableView(tableView: UITableView) -&gt; Int {
+    return fetchedResultsController.sections!.count
+}
+
+override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int {
+    let sections = fetchedResultsController.sections as! [NSFetchedResultsSectionInfo]
+    let sectionInfo = sections[section]
+    return sectionInfo.numberOfObjects
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="uitableview-へのデータ変更の通知">UITableView へのデータ変更の通知</h3>
+
+<pre><code>func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    tableView.beginUpdates()
+}
+
+func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    switch type {
+        case .Insert:
+            tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+        case .Move:
+            break
+        case .Update:
+            break
+    }
+}
+
+func controller(controller: NSFetchedResultsController, didChangeObject anObject: NSManagedObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    switch type {
+        case .Insert:
+            tableView.insertRowsAtIndexPaths([newIndexPath! ], withRowAnimation: .Fade)
+        case .Delete:
+            tableView.deleteRowsAtIndexPaths([indexPath! ], withRowAnimation: .Fade)
+        case .Update:
+            configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, indexPath: indexPath!)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath! ], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([indexPath! ], withRowAnimation: .Fade)
+    }
+}
+
+func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    tableView.endUpdates()
+}
+</code></pre>
+
+<p><br></p>
+
+<h3 id="キャッシュの追加">キャッシュの追加</h3>
+
+<pre><code>fetchedResultsController = NSFetchedResultsController(fetchRequest: request, 
+                                                      managedObjectContext: moc, 
+                                                      sectionNameKeyPath: &quot;department.name&quot;, 
+                                                      cacheName: &quot;rootCache&quot;)
+</code></pre>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>
