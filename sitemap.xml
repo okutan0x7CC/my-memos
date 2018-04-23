@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://masakipedia.github.io/blog/2018/04/23/2018-04-23-1/</loc>
+    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</loc>
     <lastmod>2018-04-22T11:50:00+09:00</lastmod>
   </url>
@@ -34,13 +39,13 @@
   
   <url>
     <loc>https://masakipedia.github.io/</loc>
-    <lastmod>2018-04-22T11:50:00+09:00</lastmod>
+    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://masakipedia.github.io/blog/</loc>
-    <lastmod>2018-04-22T11:50:00+09:00</lastmod>
+    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -50,20 +55,8 @@
   </url>
   
   <url>
-    <loc>https://masakipedia.github.io/tags/coredata/</loc>
-    <lastmod>2018-04-22T11:50:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://masakipedia.github.io/tags/css/</loc>
     <lastmod>2018-04-06T22:00:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://masakipedia.github.io/tags/csv/</loc>
-    <lastmod>2018-04-09T11:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -80,32 +73,26 @@
   </url>
   
   <url>
+    <loc>https://masakipedia.github.io/tags/playground/</loc>
+    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://masakipedia.github.io/tags/swift4/</loc>
-    <lastmod>2018-04-22T11:50:00+09:00</lastmod>
+    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://masakipedia.github.io/tags/</loc>
-    <lastmod>2018-04-22T11:50:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://masakipedia.github.io/tags/uipageviewcontroller/</loc>
-    <lastmod>2018-04-05T15:19:00+09:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://masakipedia.github.io/tags/uiview/</loc>
-    <lastmod>2018-04-14T21:40:00+09:00</lastmod>
+    <lastmod>2018-04-06T22:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://masakipedia.github.io/tags/xcode9/</loc>
-    <lastmod>2018-04-22T11:50:00+09:00</lastmod>
+    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   

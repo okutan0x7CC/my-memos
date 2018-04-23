@@ -80,10 +80,10 @@
 
             <article class="blog-article">
                 <h1 class="blog-title">
-                    [Swift4] Add shadow to UIView with playground
+                    [Swift4] Pointer with playground
                 </h1>
                 <div class="blog-image-container">
-                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38768395-0d3bc54e-402e-11e8-845a-ddba5b4cbd47.png">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/39091095-1c19f1b2-4628-11e8-9fc1-1104f4d54126.png">
                 </div>
                 <ul class="blog-tags">
                     
@@ -101,62 +101,152 @@
                     
                 </ul>
                 <section class="blog-content">
-                <p class="blog-publish-date">2018-04-14</p>                    
+                <p class="blog-publish-date">2018-04-23</p>                    
                     
 
 <h2 id="はじめに">はじめに</h2>
 
-<p>View に Shadow をつける時、色々試したいので Playground で実装しました。</p>
+<p>Swift でのポインタについて学びました。</p>
 
-<p>また、UIView に Shadow をつけると意外と行数が多くなるので、</p>
-
-<p>UIView の拡張に addShadow  を作りました。</p>
+<p>以下は Playground で色々試したコードです。</p>
 
 <p><br></p>
 
-<h2 id="コードはこちら">コードはこちら</h2>
+<p><strong>参考 :</strong>
+<a href="https://developer.apple.com/documentation/swift/unsafemutablepointer">https://developer.apple.com/documentation/swift/unsafemutablepointer</a></p>
 
-<pre><code>import UIKit
-import PlaygroundSupport
+<p><br></p>
 
+<h2 id="playground">Playground</h2>
 
-extension UIView {
-    
-    func addShadow(radius: CGFloat, shadowColor: UIColor, offset: CGSize, opacity: Float) {
-        self.layer.shadowColor   = shadowColor.cgColor
-        self.layer.shadowOpacity = opacity
-        self.layer.shadowOffset  = offset
-        self.layer.shadowRadius  = radius
-        
-        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.main.scale
-    }
-    
+<pre><code>func printInt(atAddress p: UnsafePointer&lt;Int&gt;) {
+    print(&quot;printInt: \(p.pointee)&quot;)
+}
+
+func changeInt(atAddress p: UnsafeMutablePointer&lt;Int&gt;, value: Int) {
+    p.pointee = value
 }
 
 
-let baseView = UIView(frame: CGRect(x: 0,
-                                    y: 0,
-                                    width: 400,
-                                    height: 400))
-        
-let shadowView = UIView(frame: CGRect(x: 100,
-                                      y: 100,
-                                      width: 200,
-                                      height: 200))
-shadowView.layer.cornerRadius = shadowView.frame.height * 0.05
+// - UnsafePointer -----------------------------------
 
-baseView.backgroundColor = .white
-shadowView.backgroundColor = .orange
+let unsafePointer = { () -&gt; () in
+    print(&quot;- UnsafePointer -------&quot;)
 
-shadowView.addShadow(radius: 10,
-                     shadowColor: .black,
-                     offset: CGSize(width: 0, height: 0),
-                     opacity: 0.5)
+    var value: Int = 23
+    print(&quot;print:    \(value)&quot;)
 
-baseView.addSubview(shadowView)
-PlaygroundPage.current.liveView = baseView
+    printInt(atAddress: &amp;value)
+
+    print()
+}()
+
+
+// - UnsafeMutablePointer ----------------------------
+
+let unsafeMutablePointer = { () -&gt; () in
+    print(&quot;- UnsafeMutablePointer -------&quot;)
+
+    var value: Int = 100
+    print(&quot;print:    \(value)&quot;)
+
+    changeInt(atAddress: &amp;value, value: 0)
+    printInt(atAddress: &amp;value)
+
+    print()
+}()
+
+
+// - UnsafeMutablePointer 2 --------------------------
+
+let unsafeMutablePointer2 = { () -&gt; () in
+    print(&quot;- UnsafeMutablePointer 2 -------&quot;)
+
+    var value: Int = 100
+    print(&quot;print:    \(value)&quot;)
+
+    var p = UnsafeMutablePointer&lt;Int&gt;(&amp;value)
+    printInt(atAddress: p)
+
+
+    // Rewrite the original value
+
+    changeInt(atAddress: p, value: 0)
+    printInt(atAddress: p)
+    print(&quot;print:    \(value)&quot;)
+
+    print()
+}()
+
+
+// - Array --------------------------------------------
+
+let array = { () -&gt; () in
+    print(&quot;- Array -------&quot;)
+
+    var array: [Int] = [11, 22, 33, 44]
+    print(&quot;print:    \(array)&quot;)
+
+    var p = UnsafeMutablePointer&lt;Int&gt;.allocate(capacity: array.count)
+    p.initialize(from: UnsafeMutablePointer&lt;Int&gt;(&amp;array), count: array.count)
+
+    for i in 0 ..&lt; array.count {
+        printInt(atAddress: p + i)
+    }
+
+    p.deallocate()
+
+    print()
+}()
+
+
+// - Array 2 -------------------------------------------
+
+let array2 = { () -&gt; () in
+    print(&quot;- Array 2 -------&quot;)
+
+    var array: [Int] = [11, 22, 33, 44]
+    print(&quot;print:    \(array)&quot;)
+
+
+    // Rewrite the original value
+
+    var p = UnsafeMutablePointer&lt;Int&gt;(&amp;array)
+    for i in 0 ..&lt; array.count {
+        p.advanced(by: i).pointee = i
+    }
+    print(&quot;print:    \(array)&quot;)
+
+    print()
+}()
+</code></pre>
+
+<h3 id="結果">結果</h3>
+
+<pre><code>- UnsafePointer -------
+print:    23
+printInt: 23
+
+- UnsafeMutablePointer -------
+print:    100
+printInt: 0
+
+- UnsafeMutablePointer 2 -------
+print:    100
+printInt: 100
+printInt: 0
+print:    0
+
+- Array -------
+print:    [11, 22, 33, 44]
+printInt: 11
+printInt: 22
+printInt: 33
+printInt: 44
+
+- Array 2 -------
+print:    [11, 22, 33, 44]
+print:    [0, 1, 2, 3]
 </code></pre>
 
                 </section>

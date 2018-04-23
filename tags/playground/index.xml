@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Xcode9 on @masakipedia</title>
-    <link>https://masakipedia.github.io/tags/xcode9/</link>
-    <description>Recent content in Xcode9 on @masakipedia</description>
+    <title>Playground on @masakipedia</title>
+    <link>https://masakipedia.github.io/tags/playground/</link>
+    <description>Recent content in Playground on @masakipedia</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Mon, 23 Apr 2018 16:00:00 +0900</lastBuildDate>
     
-	<atom:link href="https://masakipedia.github.io/tags/xcode9/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://masakipedia.github.io/tags/playground/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -23,27 +23,6 @@
 参考 : https://developer.apple.com/documentation/swift/unsafemutablepointer
 
 Playground func printInt(atAddress p: UnsafePointer&amp;lt;Int&amp;gt;) { print(&amp;quot;printInt: \(p.pointee)&amp;quot;) } func changeInt(atAddress p: UnsafeMutablePointer&amp;lt;Int&amp;gt;, value: Int) { p.pointee = value } // - UnsafePointer ----------------------------------- let unsafePointer = { () -&amp;gt; () in print(&amp;quot;- UnsafePointer -------&amp;quot;) var value: Int = 23 print(&amp;quot;print: \(value)&amp;quot;) printInt(atAddress: &amp;amp;value) print() }() // - UnsafeMutablePointer ---------------------------- let unsafeMutablePointer = { () -&amp;gt; () in print(&amp;quot;- UnsafeMutablePointer -------&amp;quot;) var value: Int = 100 print(&amp;quot;print: \(value)&amp;quot;) changeInt(atAddress: &amp;amp;value, value: 0) printInt(atAddress: &amp;amp;value) print() }() // - UnsafeMutablePointer 2 -------------------------- let unsafeMutablePointer2 = { () -&amp;gt; () in print(&amp;quot;- UnsafeMutablePointer 2 -------&amp;quot;) var value: Int = 100 print(&amp;quot;print: \(value)&amp;quot;) var p = UnsafeMutablePointer&amp;lt;Int&amp;gt;(&amp;amp;value) printInt(atAddress: p) // Rewrite the original value changeInt(atAddress: p, value: 0) printInt(atAddress: p) print(&amp;quot;print: \(value)&amp;quot;) print() }() // - Array -------------------------------------------- let array = { () -&amp;gt; () in print(&amp;quot;- Array -------&amp;quot;) var array: [Int] = [11, 22, 33, 44] print(&amp;quot;print: \(array)&amp;quot;) var p = UnsafeMutablePointer&amp;lt;Int&amp;gt;.</description>
-    </item>
-    
-    <item>
-      <title>[Swift4] Overview Core Data</title>
-      <link>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</link>
-      <pubDate>Sun, 22 Apr 2018 11:50:00 +0900</pubDate>
-      
-      <guid>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</guid>
-      <description>はじめに Core Data の勉強をまとめておきます。
-
-引用 : Core Dataプログラミングガイド
-https://developer.apple.com/jp/documentation/Cocoa&amp;hellip;
-
-Core Data とは  Core Data = アプリケーションのモデル階層オブジェクトを管理するためのフレームワーク  できること  オブジェクトの永続化などが可能 処理が自動で最適化される    
-Core Data の構成  Core Data スタック = データストアとアプリケーションのオブジェクトを仲介するフレームワークオブジェクトの集合
- フレームワークオブジェクト
- 管理オブジェクトモデル（NSManagedObjectModel）
- Core Data スタックによってアクセスされるデータを記述するもの   永続ストアコーディネータ（NSPersistentStoreCoordinator）
- エンティティのインスタンス実体化を担当する 既存のインスタンスを永続ストア（NSPersistentStore）から取得する  管理オブジェクトコンテキスト(NSManagedObjectContext)
- 作業領域 オブジェクトをフェッチする場合など、一旦作業領域にコピーされる     
-Core Data の使用手順 Core Dataスタック の生成 Core Data スタックを初期化することで、データ要求および生成の準備が整う。 よって、アプリケーションのデータを生成する前に実行する。</description>
     </item>
     
     <item>

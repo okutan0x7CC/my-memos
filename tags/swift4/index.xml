@@ -6,13 +6,27 @@
     <description>Recent content in Swift4 on @masakipedia</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 22 Apr 2018 11:50:00 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 23 Apr 2018 16:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://masakipedia.github.io/tags/swift4/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>[Swift4] How to use CoreData</title>
+      <title>[Swift4] Pointer with playground</title>
+      <link>https://masakipedia.github.io/blog/2018/04/23/2018-04-23-1/</link>
+      <pubDate>Mon, 23 Apr 2018 16:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/23/2018-04-23-1/</guid>
+      <description>はじめに Swift でのポインタについて学びました。
+以下は Playground で色々試したコードです。
+
+参考 : https://developer.apple.com/documentation/swift/unsafemutablepointer
+
+Playground func printInt(atAddress p: UnsafePointer&amp;lt;Int&amp;gt;) { print(&amp;quot;printInt: \(p.pointee)&amp;quot;) } func changeInt(atAddress p: UnsafeMutablePointer&amp;lt;Int&amp;gt;, value: Int) { p.pointee = value } // - UnsafePointer ----------------------------------- let unsafePointer = { () -&amp;gt; () in print(&amp;quot;- UnsafePointer -------&amp;quot;) var value: Int = 23 print(&amp;quot;print: \(value)&amp;quot;) printInt(atAddress: &amp;amp;value) print() }() // - UnsafeMutablePointer ---------------------------- let unsafeMutablePointer = { () -&amp;gt; () in print(&amp;quot;- UnsafeMutablePointer -------&amp;quot;) var value: Int = 100 print(&amp;quot;print: \(value)&amp;quot;) changeInt(atAddress: &amp;amp;value, value: 0) printInt(atAddress: &amp;amp;value) print() }() // - UnsafeMutablePointer 2 -------------------------- let unsafeMutablePointer2 = { () -&amp;gt; () in print(&amp;quot;- UnsafeMutablePointer 2 -------&amp;quot;) var value: Int = 100 print(&amp;quot;print: \(value)&amp;quot;) var p = UnsafeMutablePointer&amp;lt;Int&amp;gt;(&amp;amp;value) printInt(atAddress: p) // Rewrite the original value changeInt(atAddress: p, value: 0) printInt(atAddress: p) print(&amp;quot;print: \(value)&amp;quot;) print() }() // - Array -------------------------------------------- let array = { () -&amp;gt; () in print(&amp;quot;- Array -------&amp;quot;) var array: [Int] = [11, 22, 33, 44] print(&amp;quot;print: \(array)&amp;quot;) var p = UnsafeMutablePointer&amp;lt;Int&amp;gt;.</description>
+    </item>
+    
+    <item>
+      <title>[Swift4] Overview Core Data</title>
       <link>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</link>
       <pubDate>Sun, 22 Apr 2018 11:50:00 +0900</pubDate>
       
