@@ -26,7 +26,7 @@ Playground func printInt(atAddress p: UnsafePointer&amp;lt;Int&amp;gt;) { print(
     </item>
     
     <item>
-      <title>[Swift4] Overview Core Data</title>
+      <title>[Swift4] Overview of Core Data</title>
       <link>https://masakipedia.github.io/blog/2018/04/22/2018-04-22-1/</link>
       <pubDate>Sun, 22 Apr 2018 11:50:00 +0900</pubDate>
       
@@ -56,7 +56,7 @@ Core Data の使用手順 Core Dataスタック の生成 Core Data スタック
 また、UIView に Shadow をつけると意外と行数が多くなるので、
 UIView の拡張に addShadow を作りました。
 
-コードはこちら import UIKit import PlaygroundSupport extension UIView { func addShadow(radius: CGFloat, shadowColor: UIColor, offset: CGSize, opacity: Float) { self.layer.shadowColor = shadowColor.cgColor self.layer.shadowOpacity = opacity self.layer.shadowOffset = offset self.layer.shadowRadius = radius self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath self.layer.shouldRasterize = true self.layer.rasterizationScale = UIScreen.main.scale } } let baseView = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 400)) let shadowView = UIView(frame: CGRect(x: 100, y: 100, width: 200, height: 200)) shadowView.</description>
+Playground import UIKit import PlaygroundSupport extension UIView { func addShadow(radius: CGFloat, shadowColor: UIColor, offset: CGSize, opacity: Float) { self.layer.shadowColor = shadowColor.cgColor self.layer.shadowOpacity = opacity self.layer.shadowOffset = offset self.layer.shadowRadius = radius self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath self.layer.shouldRasterize = true self.layer.rasterizationScale = UIScreen.main.scale } } let baseView = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 400)) let shadowView = UIView(frame: CGRect(x: 100, y: 100, width: 200, height: 200)) shadowView.</description>
     </item>
     
     <item>
@@ -65,7 +65,7 @@ UIView の拡張に addShadow を作りました。
       <pubDate>Thu, 05 Apr 2018 15:19:00 +0900</pubDate>
       
       <guid>https://masakipedia.github.io/blog/2018/04/05/2018-04-05/</guid>
-      <description>はじめに   UIPageViewController の仕組みを理解するのに苦労したので、 Playgroud で試せるコードを実装しました。  コードはこちら  import UIKit import PlaygroundSupport class ContainerViewController: UIViewController { var pageViewController: UIPageViewController! // user setting let pageTotal: Int = 3 } extension ContainerViewController { override func viewDidLoad() { super.viewDidLoad() pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil) let firstViewController = generateViewControllerAtIndex(0) pageViewController.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil) pageViewController.dataSource = self self.addChildViewController(pageViewController) self.view.addSubview(pageViewController.view) } } // MARK: - DataSource extension ContainerViewController: UIPageViewControllerDataSource { func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -&amp;gt; UIViewController?</description>
+      <description>はじめに   UIPageViewController の仕組みを理解するのに苦労したので、 Playgroud で試せるコードを実装しました。  Playground  import UIKit import PlaygroundSupport class ContainerViewController: UIViewController { var pageViewController: UIPageViewController! // user setting let pageTotal: Int = 3 } extension ContainerViewController { override func viewDidLoad() { super.viewDidLoad() pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil) let firstViewController = generateViewControllerAtIndex(0) pageViewController.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil) pageViewController.dataSource = self self.addChildViewController(pageViewController) self.view.addSubview(pageViewController.view) } } // MARK: - DataSource extension ContainerViewController: UIPageViewControllerDataSource { func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -&amp;gt; UIViewController?</description>
     </item>
     
   </channel>

@@ -14,7 +14,12 @@
 
 .blog-article .blog-image-container img.blog-image {
     height: 100%;
-    border: 2px solid rgb(243, 244, 244);
+    box-shadow: 0px 0px 10px -5px #000;
+    border-radius: 10pt;
+}
+
+_::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container img.blog-image {
+    box-shadow: 0pt 0pt 9pt -6pt #000;
 }
 
 .blog-article .blog-publish-date {
@@ -31,14 +36,15 @@
 }
 
 .blog-article ul.blog-tags li.blog-tag {
-    padding: 5px;
+    padding: 4pt 8pt;
     margin: 5px 10px;
     background-color: rgb(243, 244, 244);
     font-size: 14pt;
+    border-radius: 15pt;
 }
 
 .blog-article .blog-content {
-    padding: 16pt;
+    padding: 30pt;
     font-size: 12pt;
 }
 

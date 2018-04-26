@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Voice on @masakipedia</title>
+    <link>https://masakipedia.github.io/tags/voice/</link>
+    <description>Recent content in Voice on @masakipedia</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 24 Apr 2018 19:00:00 +0900</lastBuildDate>
+    
+	<atom:link href="https://masakipedia.github.io/tags/voice/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Voice] About generation of voice</title>
+      <link>https://masakipedia.github.io/blog/2018/04/24/2018-04-24-1/</link>
+      <pubDate>Tue, 24 Apr 2018 19:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/04/24/2018-04-24-1/</guid>
+      <description>はじめに 音声・音響についての研究に、GPGPUを活用する予定なので、
+「人間はどのように音声を生成するのか」の勉強についてまとめます。
+（図は教科書の転載になるため、略）
+
+音声発生プロセス  語句の選択 言語的形式に変換 発声器官で音声を生成 聴覚器官へ伝達 脳が理解  話して自身にも伝わり、発声器官の制御を行なっている。 （= speech chain; 言葉の鎖）
+
+空気と発声の関係 空気の流れを生成  腹筋が横隔膜を押し上げる。 肺から空気が押し上げられる。  空気の通り道  気管 喉頭にある声門（声帯の間）  空気の流れから発声へ  声を出そうとする時のみ、声帯同士が接近する。 声帯の間を通り抜ける際、空気流によって声門が開閉を繰り返す。 声門の開閉が空気の断続を生成する。 音源となる。（= glottal source; 声帯音源）   基本周期 = 声帯の振動周期 基本周波数 = 1 / 基本周期 声が高い == 基本周期が短い  
+声帯音源を変化させる  声道
+ 場所 : （声帯 &amp;lt; 声道 &amp;lt;= 鼻孔） || （声帯 &amp;lt; 声道 &amp;lt; 口唇） 役割 : 声帯音源を変化させる</description>
+    </item>
+    
+  </channel>
+</rss>

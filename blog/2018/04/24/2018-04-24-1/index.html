@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/list.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/">
+                    <li>Products</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+                <a href="/products/">
+                    <li>Products</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Voice] About generation of voice
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/39227202-55a46c52-4892-11e8-971a-59efb51b495e.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Study
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Voice
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-04-24</p>                    
+                    
+
+<h2 id="はじめに">はじめに</h2>
+
+<p>音声・音響についての研究に、GPGPUを活用する予定なので、</p>
+
+<p>「人間はどのように音声を生成するのか」の勉強についてまとめます。</p>
+
+<p>（図は教科書の転載になるため、略）</p>
+
+<p><br></p>
+
+<h2 id="音声発生プロセス">音声発生プロセス</h2>
+
+<ol>
+<li>語句の選択</li>
+<li>言語的形式に変換</li>
+<li>発声器官で音声を生成</li>
+<li>聴覚器官へ伝達</li>
+<li>脳が理解</li>
+</ol>
+
+<p>話して自身にも伝わり、発声器官の制御を行なっている。
+（= speech chain; 言葉の鎖）</p>
+
+<p><br></p>
+
+<h2 id="空気と発声の関係">空気と発声の関係</h2>
+
+<h3 id="空気の流れを生成">空気の流れを生成</h3>
+
+<ol>
+<li>腹筋が横隔膜を押し上げる。</li>
+<li>肺から空気が押し上げられる。</li>
+</ol>
+
+<h3 id="空気の通り道">空気の通り道</h3>
+
+<ol>
+<li>気管</li>
+<li>喉頭にある声門（声帯の間）</li>
+</ol>
+
+<h3 id="空気の流れから発声へ">空気の流れから発声へ</h3>
+
+<ol>
+<li>声を出そうとする時のみ、声帯同士が接近する。</li>
+<li>声帯の間を通り抜ける際、空気流によって声門が開閉を繰り返す。</li>
+<li>声門の開閉が空気の断続を生成する。</li>
+<li>音源となる。（= glottal source; 声帯音源）</li>
+</ol>
+
+<ul>
+<li>基本周期 = 声帯の振動周期</li>
+<li>基本周波数 = 1 / 基本周期</li>
+<li>声が高い == 基本周期が短い</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="声帯音源を変化させる">声帯音源を変化させる</h2>
+
+<ul>
+<li><p>声道</p>
+
+<ul>
+<li>場所 : （声帯 &lt; 声道 &lt;= 鼻孔） || （声帯 &lt; 声道 &lt; 口唇）</li>
+
+<li><p>役割 : 声帯音源を変化させる</p>
+
+<ul>
+<li>音源に音色を付ける</li>
+<li>顎, 舌, 唇を動かす</li>
+</ul></li>
+
+<li><p>調音 = 声道を変化させ、目的の音声にする</p>
+
+<ul>
+<li>調音器官 = 調音に用いる声道の部分
+
+<ul>
+<li>調音器 = 自由に動かせる舌, 唇, 口蓋帆（こうがいはん）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p><br></p>
+
+<h2 id="母音の調音位置">母音の調音位置</h2>
+
+<p>略</p>
+
+<p><br></p>
+
+<h2 id="子音の発声方法">子音の発声方法</h2>
+
+<ul>
+<li>調音様式 = 調音方法の種類</li>
+<li>子音
+
+<ul>
+<li>有声子音 = 声帯の振動をある子音</li>
+<li>無声子音 = 声帯の振動がない子音</li>
+</ul></li>
+</ul>
+
+<h3 id="摩擦-破裂-破擦">摩擦, 破裂, 破擦</h3>
+
+<ul>
+<li>摩擦音 = 舌や口唇で狭い道を作り、空気を通す。
+
+<ul>
+<li>音 : z</li>
+</ul></li>
+<li>破裂音 = 舌や口などで空気流を一時的に止め、急に解放する。
+
+<ul>
+<li>音 : t</li>
+</ul></li>
+<li>破擦音 = 破裂音から摩擦音へ移行する。
+
+<ul>
+<li>音 : ts</li>
+</ul></li>
+</ul>
+
+<p>上記の発声は、声帯の振動と関係ない。</p>
+
+<h3 id="半母音-鼻音">半母音, 鼻音</h3>
+
+<ul>
+<li>半母音 = 母音と同じ生成方法だが、持続しない。
+
+<ul>
+<li>音 : w</li>
+</ul></li>
+<li>鼻音   = 軟口蓋を下げ、口の中で気流を遮断する。
+
+<ul>
+<li>音 : m</li>
+</ul></li>
+</ul>
+
+<h3 id="撥音-弾音">撥音, 弾音</h3>
+
+<ul>
+<li>撥音 = 前後の音素によって、鼻音化母音として現れる。
+
+<ul>
+<li>音 : 日本語の&rdquo;ん&rdquo;</li>
+</ul></li>
+<li>鼻音化母音 = 母音発生時に口蓋帆（こうがいはん）を下げる。</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="声帯振動の有無">声帯振動の有無</h2>
+
+<ul>
+<li>有声音     = 声帯振動がある音</li>
+<li>無声音     = 声帯振動がない音</li>
+<li>ささやき声 = 声帯振動をせず、声道を開いて調音する。</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="以上">以上</h2>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>
