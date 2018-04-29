@@ -27,6 +27,14 @@
     padding: 1pt 5pt;
     border-radius: 10pt;
     box-shadow: 0pt 0pt 15pt -5pt #888;
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
+}
+
+.list .blogs-container .blog .shadow-container:hover  {
+	transform: scale(1.03);
+    transition-duration: 0.2s;
+    transition-timing-function: ease;
 }
 
 _::-webkit-full-page-media, _:future, :root .list .blogs-container .blog .shadow-container {
