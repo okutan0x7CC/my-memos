@@ -8,18 +8,18 @@
 
 .blog-article .blog-image-container {
     object-fit: contain;
-    height: 250pt;
+    height: 200pt;
     text-align: center;
 }
 
 .blog-article .blog-image-container img.blog-image {
     height: 100%;
-    box-shadow: 0px 0px 10px -5px #000;
+    box-shadow: 0pt 0pt 15pt -6pt #888;
     border-radius: 10pt;
 }
 
 _::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container img.blog-image {
-    box-shadow: 0pt 0pt 9pt -6pt #000;
+    box-shadow: 0pt 0pt 10pt -6pt #888;
 }
 
 .blog-article .blog-publish-date {
@@ -36,16 +36,17 @@ _::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container 
 }
 
 .blog-article ul.blog-tags li.blog-tag {
-    padding: 4pt 8pt;
+    padding: 3pt 7pt;
     margin: 5px 10px;
     background-color: rgb(243, 244, 244);
-    font-size: 14pt;
+    font-size: 12pt;
     border-radius: 15pt;
 }
 
 .blog-article .blog-content {
-    padding: 30pt;
-    font-size: 14pt;
+    max-width: 500pt;
+    margin: auto;
+    font-size: 13pt;
 }
 
 .blog-article .blog-content a {
@@ -54,7 +55,7 @@ _::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container 
 
 .blog-article .blog-content h2 {
     font-size: 20pt;
-    border-bottom: 1px solid rgb(243, 244, 244);
+    border-bottom: 1pt solid rgb(243, 244, 244);
 }
 
 .blog-article .blog-content pre {
