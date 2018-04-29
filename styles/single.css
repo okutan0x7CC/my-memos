@@ -45,7 +45,7 @@ _::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container 
 
 .blog-article .blog-content {
     padding: 30pt;
-    font-size: 12pt;
+    font-size: 14pt;
 }
 
 .blog-article .blog-content a {
@@ -53,7 +53,7 @@ _::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container 
 }
 
 .blog-article .blog-content h2 {
-    font-size: 19pt;
+    font-size: 20pt;
     border-bottom: 1px solid rgb(243, 244, 244);
 }
 
