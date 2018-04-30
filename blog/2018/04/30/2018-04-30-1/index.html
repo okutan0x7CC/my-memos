@@ -80,86 +80,111 @@
 
             <article class="blog-article">
                 <h1 class="blog-title">
-                    [CSS] Make hamburger menu with only css
+                    [Swift4] Write CSV file
                 </h1>
                 <div class="blog-image-container">
-                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/38423808-ec5687d2-39e9-11e8-9d19-70cdf496c53f.gif">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/39426337-6978c242-4cba-11e8-9d18-48aade1384b1.png">
                 </div>
                 <ul class="blog-tags">
                     
                         <li class="blog-tag">
-                            CSS
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
                         </li>
                     
                 </ul>
                 <section class="blog-content">
-                <p class="blog-publish-date">2018-04-06</p>                    
+                <p class="blog-publish-date">2018-04-30</p>                    
                     
 
-<h2 id="introduction">Introduction</h2>
+<h2 id="はじめに">はじめに</h2>
 
-<p>Without using JavaScript, CSS alone made a simple hamburger menu.</p>
-
-<p>Also, narrowing the screen of this website will display this hamburger menu.</p>
+<p>The method of outputting the CSV file in the iOS application is as follows.</p>
 
 <p><br></p>
 
-<h2 id="html">html</h2>
+<h2 id="ios-xcode-single-view-app">[iOS] Xcode Single View App</h2>
 
-<p><br></p>
+<pre><code>import UIKit
 
-<pre><code>&lt;!DOCTYPE html&gt; 
-&lt;html&gt;
-    &lt;head&gt;
-        &lt;style type=&quot;text/css&quot;&gt;
-            .hamburger-menu #hamburger-handler {
-                display: none;
-            }
-            .hamburger-menu .content {
-                display: none;
-            }
-            .hamburger-menu .cross {
-                display: none;
-                left: 0px;
-                top: 0px;
-            }
-            .hamburger-menu #hamburger-handler:checked ~ .content {
-                display: list-item;
-            }
-            .hamburger-menu #hamburger-handler:checked ~ .cross {
-                display: block;
-            }
-            .hamburger-menu #hamburger-handler:checked ~ .hamburger {
-                display: none;
-            }
-            .hamburger-menu ul {
-                list-style: none;
-                padding-left: 0px;
-            }
-        &lt;/style&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;div class=&quot;hamburger-menu&quot;&gt;
-            &lt;input id=&quot;hamburger-handler&quot; type=&quot;checkbox&quot;&gt;
-            &lt;label class=&quot;hamburger&quot; for=&quot;hamburger-handler&quot;&gt;=&lt;/label&gt;
-            &lt;label class=&quot;cross&quot; for=&quot;hamburger-handler&quot;&gt;×&lt;/label&gt;
-            &lt;ul class=&quot;content&quot;&gt;
-                &lt;a href=&quot;&quot;&gt;
-                    &lt;li&gt;aaa&lt;/li&gt;
-                &lt;/a&gt;
-                &lt;a href=&quot;&quot;&gt;
-                    &lt;li&gt;bbb&lt;/li&gt;
-                &lt;/a&gt;
-                &lt;a href=&quot;&quot;&gt;
-                    &lt;li&gt;ccc&lt;/li&gt;
-                &lt;/a&gt;
-            &lt;/ul&gt;
-        &lt;/div&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let writeButton = UIButton(frame: CGRect(x:     (self.view.frame.width - 200) / 2,
+                                                y:      (self.view.frame.height - 50) / 2,
+                                                width:  200,
+                                                height: 50))
+        writeButton.setTitle(&quot;write csv !!&quot;, for: .normal)
+        writeButton.setTitleColor(.blue, for: .normal)
+        writeButton.addTarget(self, action: #selector(self.tapWriteCSV(_:)), for: .touchUpInside)
+
+        self.view.addSubview(writeButton)
+    }
+
+
+    @objc func tapWriteCSV(_ sender: Any) {
+
+        let fileName = &quot;test.csv&quot;
+        let persons = [
+            [&quot;Name&quot;, &quot;Age&quot;],
+            [&quot;Go&quot;, &quot;21&quot;],
+            [&quot;Python&quot;, &quot;27&quot;],
+            [&quot;Swift&quot;, &quot;23&quot;]
+        ]
+
+        let path = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
+        let csvText = CSVWriter().writeAll(persons)
+        writeText(filePath: path, data: csvText)
+
+        let vc = UIActivityViewController(activityItems: [path], applicationActivities: [])
+        vc.excludedActivityTypes = [
+            UIActivityType.assignToContact,
+            UIActivityType.saveToCameraRoll,
+            UIActivityType.postToTwitter,
+            UIActivityType.postToFacebook,
+            UIActivityType.openInIBooks
+        ]
+        present(vc, animated: true, completion: nil)
+
+    }
+
+    private func writeText(filePath: URL, data: String) {
+        do {
+            try data.write(to: filePath, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print(&quot;\(error)&quot;)
+        }
+    }
+
+}
+
+class CSVWriter {
+
+    func writeAll(_ allText: [[String]]) -&gt; String {
+        var result = &quot;&quot;
+        for line in allText {
+            result += writeLine(line)
+        }
+        return result
+    }
+
+    func writeLine(_ line: [String]) -&gt; String {
+        var result = &quot;&quot;
+        for text in line {
+            result += text + &quot;,&quot;
+        }
+        result = String(result.dropLast())
+        result += &quot;\n&quot;
+        return result
+    }
+
+}
 </code></pre>
-
-<p><br></p>
 
                 </section>
             </article>

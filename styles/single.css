@@ -83,12 +83,10 @@ _::-webkit-full-page-media, _:future, :root .blog-article .blog-image-container 
     border: 1px solid rgb(243, 244, 244);
 }
 
-.blog-article .blog-content table .key {
-    text-align: left;
-}
-
-.blog-article .blog-content table .value {
-    font-weight: 100;
+.blog-article .blog-content table td {
+    padding: 10pt;
+    border: 1px solid rgb(243, 244, 244);
+    border: 1px solid rgb(243, 244, 244);
 }
 
 @font-face {

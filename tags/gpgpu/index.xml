@@ -25,14 +25,14 @@ GPUの演算資源を画像処理以外の目的に応用する技術のこと�
 
 GPU とは GPUとは、CPUと比べて並列計算に優れた演算装置です。
 そのため、CPUとはコア数が大きく異なります。
- GPU CPU のコア数を比較   コア数   NVIDIA GeForce GTX 750 Ti [2] 640   Intel Core i7-8709G [3] 4   
+
+そこで、GPU と CPU のコア数を単純に比較しました。
+   GPU コア数     NVIDIA GeForce GTX 750 Ti [2] 640   Intel Core i7-8709G [3] 4    
 主に画像処理の演算に使われているようです。
 
 GPGPU の活用領域 GPU を開発している NVIDIA の DEVELOPER サイト[4]には次のカテゴリが示されています。
  Deep Learning
- Autonomous Vehicles
- Virtual Reality
- Game Development</description>
+ Autonomous Vehicles</description>
     </item>
     
   </channel>

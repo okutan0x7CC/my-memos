@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://masakipedia.github.io/blog/2018/04/30/2018-04-30-1/</loc>
+    <lastmod>2018-04-30T21:00:00+09:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://masakipedia.github.io/blog/2018/04/24/2018-04-24-1/</loc>
     <lastmod>2018-04-24T19:00:00+09:00</lastmod>
   </url>
@@ -44,13 +49,13 @@
   
   <url>
     <loc>https://masakipedia.github.io/</loc>
-    <lastmod>2018-04-24T19:00:00+09:00</lastmod>
+    <lastmod>2018-04-30T21:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://masakipedia.github.io/blog/</loc>
-    <lastmod>2018-04-24T19:00:00+09:00</lastmod>
+    <lastmod>2018-04-30T21:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -91,7 +96,7 @@
   
   <url>
     <loc>https://masakipedia.github.io/tags/swift4/</loc>
-    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
+    <lastmod>2018-04-30T21:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -109,7 +114,7 @@
   
   <url>
     <loc>https://masakipedia.github.io/tags/xcode9/</loc>
-    <lastmod>2018-04-23T16:00:00+09:00</lastmod>
+    <lastmod>2018-04-30T21:00:00+09:00</lastmod>
     <priority>0</priority>
   </url>
   
