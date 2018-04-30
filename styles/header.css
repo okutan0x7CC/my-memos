@@ -6,6 +6,7 @@
     min-width: 200pt;
     width: 100%;
     background-color: #FFF;
+    z-index: 1;
 }
 
 _::-webkit-full-page-media, _:future, :root .header {
