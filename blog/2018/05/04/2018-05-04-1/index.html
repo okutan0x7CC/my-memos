@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/blogs.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] Play Video
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/39615599-1b8184fc-4fb2-11e8-9af5-2a021a9bce8f.gif">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-05-04</p>                    
+                    
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The method of playing video in the iOS application is as follows.</p>
+
+<p><br></p>
+
+<h2 id="ios-xcode-single-view-app">[iOS] Xcode Single View App</h2>
+
+<pre><code>import UIKit
+import AVFoundation
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let path = Bundle.main.path(forResource: &quot;test&quot;, ofType: &quot;mov&quot;)
+        self.playVideo(path: path!,
+                    parentView: self.view,
+                    frame: self.view.frame,
+                    replayInterval: 9)
+
+    }
+
+    func playVideo(path: String, parentView: UIView, frame: CGRect, replayInterval: TimeInterval) {
+        let fileURL = URL(fileURLWithPath: path)
+        let avAsset = AVURLAsset(url: fileURL)
+
+        let playerItem      = AVPlayerItem(asset: avAsset)
+        let videoPlayer     = AVPlayer(playerItem: playerItem)
+
+        let layer = AVPlayerView().layer as! AVPlayerLayer
+        layer.player = videoPlayer
+        layer.frame  = frame
+
+        parentView.layer.addSublayer(layer)
+        videoPlayer.play()
+
+        Timer.scheduledTimer(withTimeInterval: replayInterval, repeats: true, block: { (_) in
+            videoPlayer.seek(to: CMTimeMakeWithSeconds(0, Int32(NSEC_PER_SEC)))
+            videoPlayer.play()
+        })
+    }
+
+}
+
+class AVPlayerView: UIView {
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    override class var layerClass: AnyClass {
+        return AVPlayerLayer.self
+    }
+}
+</code></pre>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>

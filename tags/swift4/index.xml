@@ -6,10 +6,21 @@
     <description>Recent content in Swift4 on @masakipedia</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 30 Apr 2018 21:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 04 May 2018 15:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://masakipedia.github.io/tags/swift4/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Swift4] Play Video</title>
+      <link>https://masakipedia.github.io/blog/2018/05/04/2018-05-04-1/</link>
+      <pubDate>Fri, 04 May 2018 15:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/05/04/2018-05-04-1/</guid>
+      <description>Introduction The method of playing video in the iOS application is as follows.
+
+[iOS] Xcode Single View App import UIKit import AVFoundation class ViewController: UIViewController { override func viewDidLoad() { super.viewDidLoad() let path = Bundle.main.path(forResource: &amp;quot;test&amp;quot;, ofType: &amp;quot;mov&amp;quot;) self.playVideo(path: path!, parentView: self.view, frame: self.view.frame, replayInterval: 9) } func playVideo(path: String, parentView: UIView, frame: CGRect, replayInterval: TimeInterval) { let fileURL = URL(fileURLWithPath: path) let avAsset = AVURLAsset(url: fileURL) let playerItem = AVPlayerItem(asset: avAsset) let videoPlayer = AVPlayer(playerItem: playerItem) let layer = AVPlayerView().</description>
+    </item>
     
     <item>
       <title>[Swift4] Write CSV file</title>
