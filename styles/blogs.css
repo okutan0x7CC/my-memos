@@ -74,3 +74,41 @@ _::-webkit-full-page-media, _:future, :root .list .blogs-container .blog .shadow
     font-size: 11pt;
     border-radius: 15pt;
 }
+
+.list .blogs-container .blog .blog-tags .blog-tag:hover {
+    color: #888;
+}
+
+.list .blogs-container ul.pager {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    padding-left: 0px;
+    width: 95%;
+    margin: auto;
+    margin-top: 20pt;
+}
+
+.list .blogs-container .pager li {
+    background-color: rgb(243, 244, 244);;
+    padding: 3pt 8pt;
+    border-radius: 5pt;
+}
+
+.list .blogs-container .pager li.new-able {
+    justify-content: flex-start;
+}
+
+.list .blogs-container .pager li.new-disable {
+    justify-content: flex-start;
+    color: #888;
+}
+
+.list .blogs-container .pager li.old-able {
+    justify-content: flex-end;
+}
+
+.list .blogs-container .pager li.old-disable {
+    justify-content: flex-end;
+    color: #888;
+}
