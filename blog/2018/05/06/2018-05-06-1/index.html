@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/blogs.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] Generate QR Code
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/39669656-6d13dd2a-512d-11e8-9cad-2af21eda9e7c.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Playground
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-05-06</p>                    
+                    
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The method of generating QR Code in the playground is as follows.</p>
+
+<p><br></p>
+
+<h2 id="playground">Playground</h2>
+
+<pre><code>import UIKit
+import PlaygroundSupport
+
+func generateQRCode(from string: String) -&gt; UIImage? {
+
+    let data = string.data(using: .utf8)
+
+    if let filter = CIFilter(name: &quot;CIQRCodeGenerator&quot;) {
+        filter.setValue(data, forKey: &quot;inputMessage&quot;)
+        filter.setValue(&quot;M&quot;, forKey: &quot;inputCorrectionLevel&quot;)
+        let transform = CGAffineTransform(scaleX: 8, y: 8)
+
+        if let output = filter.outputImage?.transformed(by: transform) {
+            return UIImage(ciImage: output)
+        }
+    }
+
+    return nil
+}
+
+let str = &quot;https://masakipedia.github.io&quot;
+
+guard let image = generateQRCode(from: str) else {
+    fatalError(&quot;can not generate&quot;)
+}
+
+let imageView = UIImageView(image: image)
+let view = UIView(frame: CGRect(origin: CGPoint.zero,
+                                size: CGSize(width: 250,
+                                            height: 250)))
+view.addSubview(imageView)
+
+PlaygroundPage.current.liveView = view
+</code></pre>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>

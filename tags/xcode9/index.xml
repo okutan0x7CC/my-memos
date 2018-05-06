@@ -6,10 +6,21 @@
     <description>Recent content in Xcode9 on @masakipedia</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 04 May 2018 15:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 06 May 2018 12:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://masakipedia.github.io/tags/xcode9/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Swift4] Generate QR Code</title>
+      <link>https://masakipedia.github.io/blog/2018/05/06/2018-05-06-1/</link>
+      <pubDate>Sun, 06 May 2018 12:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/05/06/2018-05-06-1/</guid>
+      <description>Introduction The method of generating QR Code in the playground is as follows.
+
+Playground import UIKit import PlaygroundSupport func generateQRCode(from string: String) -&amp;gt; UIImage? { let data = string.data(using: .utf8) if let filter = CIFilter(name: &amp;quot;CIQRCodeGenerator&amp;quot;) { filter.setValue(data, forKey: &amp;quot;inputMessage&amp;quot;) filter.setValue(&amp;quot;M&amp;quot;, forKey: &amp;quot;inputCorrectionLevel&amp;quot;) let transform = CGAffineTransform(scaleX: 8, y: 8) if let output = filter.outputImage?.transformed(by: transform) { return UIImage(ciImage: output) } } return nil } let str = &amp;quot;https://masakipedia.</description>
+    </item>
     
     <item>
       <title>[Swift4] Play Video</title>
