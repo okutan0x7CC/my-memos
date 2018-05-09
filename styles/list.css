@@ -34,7 +34,7 @@
 }
 
 .list .blogs-container .blog .shadow-container:hover  {
-	transform: scale3d(1.02, 1.02, 1); 
+	transform: translateY(100pt);
     transition-duration: 0.2s;
     transition-timing-function: ease;
 }
