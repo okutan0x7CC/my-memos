@@ -26,28 +26,32 @@
 
 @keyframes shadow {
     0% { 
-        box-shadow: 0pt 0pt 15pt -5pt #888;
+        box-shadow: 0pt 0pt 0pt 0pt #888;
     }
     100% { 
-        box-shadow: 0pt 5pt 15pt -3pt #888;
+        box-shadow: 0pt 5pt 12pt -3pt #888;
     }
 }
 
 .list .blogs-container .blog .shadow-container  {
     padding: 1pt 5pt;
     border-radius: 10pt;
-    box-shadow: 0pt 0pt 15pt -5pt #888;
+    box-shadow: 0pt 0pt 0pt 0pt #888;
     transition-duration: 0.3s;
     animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
     transition-timing-function: ease-in-out;
+    background-color: #FFF;
+
 }
 
 .list .blogs-container .blog .shadow-container:hover  {
     animation-name: shadow;
     transform: translateY(-5pt); 
-    box-shadow: 0pt 5pt 15pt -3pt #888;
+    box-shadow: 0pt 5pt 10pt -3pt #888;
     animation-duration: 0.3s;
     transition-duration: 0.3s;
+    animation-timing-function: ease;
     transition-timing-function: ease;
 }
 
@@ -56,7 +60,7 @@
         box-shadow: 0pt 0pt 12pt -6pt #888;
     }
     100% { 
-        box-shadow: 0pt 5pt 12pt -4pt #888;
+        box-shadow: 0pt 5pt 12pt -5pt #888;
     }
 }
 
@@ -66,7 +70,7 @@ _::-webkit-full-page-media, _:future, :root .list .blogs-container .blog .shadow
 }
 
 _::-webkit-full-page-media, _:future, :root .list .blogs-container .blog .shadow-container:hover {
-    box-shadow: 0pt 5pt 12pt -4pt #888;
+    box-shadow: 0pt 5pt 12pt -5pt #888;
 }
 
 .list .blogs-container .blog .blog-image {

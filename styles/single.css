@@ -1,7 +1,13 @@
 
+.blog-article {
+    width: 90%;
+    margin: auto;
+    padding: 50pt 0pt;
+    background-color: rgb(253, 253, 253);
+}
+
 .blog-article h1.blog-title {
     text-align: center;
-    margin: 68pt 0pt;
     font-size: 24pt;
     margin-bottom: 35pt;
 }
