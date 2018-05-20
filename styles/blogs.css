@@ -57,20 +57,20 @@
 
 @keyframes shadow-safari {
     0% { 
-        box-shadow: 0pt 0pt 12pt -6pt #888;
+        box-shadow: 0pt 0pt 0pt 0pt #888;
     }
     100% { 
-        box-shadow: 0pt 5pt 12pt -5pt #888;
+        box-shadow: 0pt 5pt 10pt -5pt #888;
     }
 }
 
 _::-webkit-full-page-media, _:future, :root .list .blogs-container .blog .shadow-container {
     animation-name: shadow-safari;
-    box-shadow: 0pt 0pt 12pt -6pt #888;
+    box-shadow: 0pt 0pt 0pt 0pt #888;
 }
 
 _::-webkit-full-page-media, _:future, :root .list .blogs-container .blog .shadow-container:hover {
-    box-shadow: 0pt 5pt 12pt -5pt #888;
+    box-shadow: 0pt 5pt 10pt -5pt #888;
 }
 
 .list .blogs-container .blog .blog-image {

@@ -6,10 +6,21 @@
     <description>Recent content in Xcode9 on @masakipedia</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 06 May 2018 12:00:00 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 20 May 2018 22:00:00 +0900</lastBuildDate>
     
 	<atom:link href="https://masakipedia.github.io/tags/xcode9/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Swift4] Pie Chart View</title>
+      <link>https://masakipedia.github.io/blog/2018/05/20/2018-05-20-1/</link>
+      <pubDate>Sun, 20 May 2018 22:00:00 +0900</pubDate>
+      
+      <guid>https://masakipedia.github.io/blog/2018/05/20/2018-05-20-1/</guid>
+      <description>Introduction In this time, i created the extension class PieChartView of UIView which generates a pie chart in the playground.
+
+Playground import UIKit import PlaygroundSupport class PieChartView: UIView { private var percent: CGFloat = 0 private let radius: CGFloat = 80 private let lineWidth: CGFloat = 20 private let fontSize: CGFloat = 35 required init?(coder aDecoder: NSCoder) { super.init(coder:aDecoder) } init(frame: CGRect, percent: CGFloat) { super.init(frame: frame) self.percent = percent setPercentLabel(percent: percent, textColor: .</description>
+    </item>
     
     <item>
       <title>[Swift4] Generate QR Code</title>

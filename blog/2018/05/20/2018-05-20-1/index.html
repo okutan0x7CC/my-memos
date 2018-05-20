@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/blogs.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] Pie Chart View
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/40279592-1a7656c0-5c80-11e8-86c5-85fabcd78f50.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Playground
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-05-20</p>                    
+                    
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In this time, i created the extension class PieChartView of UIView which generates a pie chart in the playground.</p>
+
+<p><br></p>
+
+<h2 id="playground">Playground</h2>
+
+<pre><code>import UIKit
+import PlaygroundSupport
+
+class PieChartView: UIView {
+    
+    private var percent:   CGFloat = 0
+    private let radius:    CGFloat = 80
+    private let lineWidth: CGFloat = 20
+    private let fontSize:  CGFloat = 35
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
+    
+    init(frame: CGRect, percent: CGFloat) {
+        super.init(frame: frame)
+        self.percent = percent
+        setPercentLabel(percent: percent, textColor: .white)
+    }
+    
+    override func draw(_ rect: CGRect) {
+        drawPieChart(percent: percent,
+                     center: CGPoint(x: self.frame.width * 0.5,
+                                     y: self.frame.height * 0.5),
+                     radius: radius,
+                     lineWidth: lineWidth,
+                     color: UIColor(red:   131/255,
+                                    green: 213/255,
+                                    blue:  112/255,
+                                    alpha: 1))
+    }
+
+    private func drawPieChart(percent: CGFloat, center: CGPoint, radius: CGFloat, lineWidth: CGFloat, color: UIColor) {
+        let bezier = UIBezierPath(arcCenter:  center,
+                               radius:     radius,
+                               startAngle: percent2angle(0),
+                               endAngle:   percent2angle(percent),
+                               clockwise:  true)
+        color.setStroke()
+        bezier.lineWidth = lineWidth
+        bezier.stroke()
+    }
+    
+    private func percent2angle(_ percent: CGFloat) -&gt; CGFloat {
+        return (2 * (percent * 0.01) + 1.5) * CGFloat.pi
+    }
+    
+    private func setPercentLabel(percent: CGFloat, textColor: UIColor) {
+        var label = UILabel(frame: CGRect(x: 0, y: 0,
+                                          width: self.frame.width, height: self.frame.height))
+        label.textColor     = textColor
+        label.text          = &quot;\(Int(percent)) %&quot;
+        label.textAlignment = .center
+        label.font          = UIFont.systemFont(ofSize: fontSize)
+        self.addSubview(label)
+    }
+    
+}
+
+//////////////////////////////////////////////////////////////
+
+let pieChartView = PieChartView(frame: CGRect(x: 0, y: 0,
+                                              width: 300, height: 300),
+                                percent: 88)
+
+pieChartView.backgroundColor = UIColor(red:   29/255,
+                                       green: 30/255,
+                                       blue:  32/255,
+                                       alpha: 1)
+
+PlaygroundPage.current.liveView = pieChartView
+</code></pre>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>
