@@ -56,23 +56,6 @@ Playground import UIKit import PlaygroundSupport func generateQRCode(from string
     </item>
     
     <item>
-      <title>[Voice] About generation of voice</title>
-      <link>https://masakipedia.github.io/blog/2018/04/24/2018-04-24-1/</link>
-      <pubDate>Tue, 24 Apr 2018 19:00:00 +0900</pubDate>
-      
-      <guid>https://masakipedia.github.io/blog/2018/04/24/2018-04-24-1/</guid>
-      <description>はじめに 音声・音響についての研究に、GPGPUを活用する予定なので、
-「人間はどのように音声を生成するのか」の勉強についてまとめます。
-（図は教科書の転載になるため、略）
-
-音声発生プロセス  語句の選択 言語的形式に変換 発声器官で音声を生成 聴覚器官へ伝達 脳が理解  話して自身にも伝わり、発声器官の制御を行なっている。 （= speech chain; 言葉の鎖）
-
-空気と発声の関係 空気の流れを生成  腹筋が横隔膜を押し上げる。 肺から空気が押し上げられる。  空気の通り道  気管 喉頭にある声門（声帯の間）  空気の流れから発声へ  声を出そうとする時のみ、声帯同士が接近する。 声帯の間を通り抜ける際、空気流によって声門が開閉を繰り返す。 声門の開閉が空気の断続を生成する。 音源となる。（= glottal source; 声帯音源）   基本周期 = 声帯の振動周期 基本周波数 = 1 / 基本周期 声が高い == 基本周期が短い  
-声帯音源を変化させる  声道
- 場所 : （声帯 &amp;lt; 声道 &amp;lt;= 鼻孔） || （声帯 &amp;lt; 声道 &amp;lt; 口唇） 役割 : 声帯音源を変化させる</description>
-    </item>
-    
-    <item>
       <title>[Swift4] Pointer with playground</title>
       <link>https://masakipedia.github.io/blog/2018/04/23/2018-04-23-1/</link>
       <pubDate>Mon, 23 Apr 2018 16:00:00 +0900</pubDate>
@@ -118,30 +101,6 @@ Core Data の使用手順 Core Dataスタック の生成 Core Data スタック
 UIView の拡張に addShadow を作りました。
 
 Playground import UIKit import PlaygroundSupport extension UIView { func addShadow(radius: CGFloat, shadowColor: UIColor, offset: CGSize, opacity: Float) { self.layer.shadowColor = shadowColor.cgColor self.layer.shadowOpacity = opacity self.layer.shadowOffset = offset self.layer.shadowRadius = radius self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: radius).cgPath self.layer.shouldRasterize = true self.layer.rasterizationScale = UIScreen.main.scale } } let baseView = UIView(frame: CGRect(x: 0, y: 0, width: 400, height: 400)) let shadowView = UIView(frame: CGRect(x: 100, y: 100, width: 200, height: 200)) shadowView.</description>
-    </item>
-    
-    <item>
-      <title>[GPGPU] Overview of GPGPU</title>
-      <link>https://masakipedia.github.io/blog/2018/04/13/2018-02-13-1/</link>
-      <pubDate>Fri, 13 Apr 2018 11:50:00 +0900</pubDate>
-      
-      <guid>https://masakipedia.github.io/blog/2018/04/13/2018-02-13-1/</guid>
-      <description>はじめに 大学4年になり、GPGPUについての研究を考えているので、
-GPGPUについての概要をまとめます。
-
-GPGPU とは GPGPU (General-purpose computing on graphics processing unit; GPUによる汎用計算) とは、
-GPUの演算資源を画像処理以外の目的に応用する技術のことです。[1]
-
-GPU とは GPUとは、CPUと比べて並列計算に優れた演算装置です。
-そのため、CPUとはコア数が大きく異なります。
-
-そこで、GPU と CPU のコア数を単純に比較しました。
-   GPU コア数     NVIDIA GeForce GTX 750 Ti [2] 640   Intel Core i7-8709G [3] 4    
-主に画像処理の演算に使われているようです。
-
-GPGPU の活用領域 GPU を開発している NVIDIA の DEVELOPER サイト[4]には次のカテゴリが示されています。
- Deep Learning
- Autonomous Vehicles</description>
     </item>
     
     <item>
