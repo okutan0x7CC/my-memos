@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/header.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/index.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/top.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/blogs.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/footer.css">
+<link rel="stylesheet" type="text/css" href="https://masakipedia.github.io//styles/single.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="icon" href="https://masakipedia.github.io//images/favicon.ico">        
+<meta charset="utf-8"/>
+<title>@masakipedia</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
+
+    <body>
+
+        <div class="all">
+
+            <header>
+                
+<nav class="header">
+    <div class="hamburger-menu">
+        <input id="hamburger-handler" type="checkbox">
+        <label class="hamburger" for="hamburger-handler"><span>=</span></label>
+        <label class="cross" for="hamburger-handler"><span>×</span></label>
+        <ul class="content">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    <div class="bar-menu">
+        <ul class="left-link">
+            
+                <a href="/">
+                    <li>@masakipedia</li>
+                </a>
+            
+        </ul>
+        <ul class="right-link">
+            
+                <a href="https://github.com/masakipedia">
+                    <li>GitHub</li>
+                </a>
+            
+                <a href="https://twitter.com/makimakipedia">
+                    <li>Twitter</li>
+                </a>
+            
+        </ul>
+    </div>
+    
+</nav>
+
+            </header>
+
+            <article class="blog-article">
+                <h1 class="blog-title">
+                    [Swift4] Landolt C
+                </h1>
+                <div class="blog-image-container">
+                    <img class="blog-image" src="https://user-images.githubusercontent.com/32217053/41722696-377b1408-75a4-11e8-8099-b7f3602eca5e.png">
+                </div>
+                <ul class="blog-tags">
+                    
+                        <li class="blog-tag">
+                            Swift4
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Xcode9
+                        </li>
+                    
+                        <li class="blog-tag">
+                            Playground
+                        </li>
+                    
+                </ul>
+                <section class="blog-content">
+                <p class="blog-publish-date">2018-06-21</p>                    
+                    
+
+<h2 id="introduction">Introduction</h2>
+
+<p>I have developed the Landolt C class this time.</p>
+
+<p><br></p>
+
+<h2 id="playground">Playground</h2>
+
+<pre><code>import UIKit
+import PlaygroundSupport
+
+class LandoltCView: UIView {
+    private var gap:    CGFloat = 0.00145
+    private var degree: CGFloat = 0
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
+
+    init(frame: CGRect, gap: CGFloat) {
+        super.init(frame: frame)
+        self.gap = gap
+        self.backgroundColor = .white
+    }
+
+    func updateGap(gap: CGFloat) {
+        self.gap = gap
+        self.setNeedsDisplay()
+    }
+
+    func rotate(degree: CGFloat) {
+        self.degree = degree
+        self.setNeedsDisplay()
+    }
+
+    override func draw(_ rect: CGRect) {
+        let lineWidth = meter2px(m: self.gap)
+        drawCircle(lineWidth: lineWidth)
+        drawRectangle(lineWidth: lineWidth, degree: self.degree)
+    }
+
+    private func drawCircle(lineWidth: CGFloat) {
+        let bezier = UIBezierPath(arcCenter:  CGPoint(x: self.frame.width * 0.5,
+                                                    y: self.frame.height * 0.5),
+                                radius:     meter2px(m: gap * 2.5),
+                                startAngle: 0,
+                                endAngle:   360,
+                                clockwise:  true)
+        bezier.lineWidth = lineWidth
+        bezier.stroke()
+    }
+
+    private func drawRectangle(lineWidth: CGFloat, degree: CGFloat) {
+
+        let degrees = Measurement(value: Double(degree), unit: UnitAngle.degrees)
+        let rotateRad = CGFloat(degrees.converted(to: UnitAngle.radians).value)
+
+        // p1 --- p2
+        // |   x   |
+        // p4 --- p3
+        var p1 = CGPoint(x: self.frame.width * 0.5,
+                        y: (self.frame.height - lineWidth) * 0.5)
+        var p2 = CGPoint(x: self.frame.width,
+                        y: (self.frame.height - lineWidth) * 0.5)
+        var p3 = CGPoint(x: self.frame.width,
+                        y: (self.frame.height + lineWidth) * 0.5)
+        var p4 = CGPoint(x: self.frame.width * 0.5,
+                        y: (self.frame.height + lineWidth) * 0.5)
+
+        let center = CGPoint(x: self.frame.width * 0.5,
+                            y: self.frame.height * 0.5)
+        p1 = rotatePoint(center: center, p: p1, rotateRad: rotateRad)
+        p2 = rotatePoint(center: center, p: p2, rotateRad: rotateRad)
+        p3 = rotatePoint(center: center, p: p3, rotateRad: rotateRad)
+        p4 = rotatePoint(center: center, p: p4, rotateRad: rotateRad)
+
+        drawTriangle(p4, p1, p2)
+        drawTriangle(p4, p3, p2)
+        drawTriangle(p1, p2, p3)
+        drawTriangle(p1, p4, p3)
+
+    }
+
+    private func rotatePoint(center: CGPoint, p: CGPoint, rotateRad: CGFloat) -&gt; CGPoint {
+        let relP = CGPoint(x: p.x - center.x,
+                        y: p.y - center.y)
+        let len = sqrt(pow(relP.x, 2) + pow(relP.y, 2))
+        let rad = atan(relP.y / relP.x)
+        let rotatedP = CGPoint(x: len * cos(rad - rotateRad),
+                            y: len * sin(rad - rotateRad))
+        let absP = CGPoint(x: rotatedP.x + center.x,
+                        y: rotatedP.y + center.y)
+        return absP
+    }
+
+    private func drawTriangle(_ p1: CGPoint, _ p2: CGPoint, _ p3: CGPoint) {
+        let triangle = UIBezierPath();
+        triangle.move(to: p1);
+        triangle.addLine(to: p2);
+        triangle.addLine(to: p3);
+        triangle.close()
+        UIColor.white.setFill()
+        triangle.fill()
+        triangle.lineWidth = 0
+        triangle.stroke();
+    }
+
+    private func meter2px(m: CGFloat) -&gt; CGFloat {
+
+        // TODO: その他機器もやる
+        let ppi: CGFloat = 401 // (iphone8+)
+
+        let meters = Measurement(value: Double(m), unit: UnitLength.meters)
+        return ppi * CGFloat(meters.converted(to: UnitLength.inches).value)
+    }
+}
+
+class LandoltC {
+    let d:   CGFloat               // distance from camera to eyes [m]
+    private(set) var gap: CGFloat  // gap of Landolt C [m]
+    let landoltCView: LandoltCView
+
+    init(d: CGFloat, rect: CGRect) {
+        self.d = d
+
+        // The initial value of gap is a value for which eyesight is 1.0
+        self.gap = d * 0.000290888206614573 // = d * 2*atan((1/60)*(CGFloat.pi/180)*(1/2))
+
+        self.landoltCView = LandoltCView(frame: rect, gap: self.gap)
+    }
+
+    func updateGap(gap: CGFloat) {
+        self.gap = gap
+        self.landoltCView.updateGap(gap: gap)
+    }
+
+    func eyesight() -&gt; CGFloat {
+        let alpha = 2 * atan(self.gap / (2 * self.d))
+        let degree = 180 * alpha / CGFloat.pi
+        return 1 / (degree * 60)
+    }
+
+
+    enum GapDirection {
+        case right
+        case bottom
+        case left
+        case top
+        case rightTop
+        case rightBottom
+        case leftTop
+        case leftBottom
+    }
+
+    func changeDirection(_ gapDirection: GapDirection) {
+        let degree: CGFloat
+        switch gapDirection {
+        case .right:
+            degree = 0
+        case .rightTop:
+            degree = 45
+        case .top:
+            degree = 90
+        case .leftTop:
+            degree = 135
+        case .left:
+            degree = 180
+        case .leftBottom:
+            degree = 225
+        case .bottom:
+            degree = 270
+        case .rightBottom:
+            degree = 315
+        default:
+            fatalError(&quot;\(gapDirection) is unknown case&quot;)
+        }
+        self.landoltCView.rotate(degree: degree)
+    }
+}
+
+let landoltC = LandoltC(d:    5,
+                        rect: CGRect(x: 0, y: 0,
+                                    width: 300, height: 300))
+landoltC.changeDirection(.right)
+landoltC.updateGap(gap: 0.00145)
+PlaygroundPage.current.liveView = landoltC.landoltCView
+</code></pre>
+
+                </section>
+            </article>
+
+            <footer>
+                <section class="footer">
+    <p class="copyright">© 2018 masaki okuno</p>
+</section>
+
+            </footer>
+
+        </div>
+
+    </body>
+</html>
