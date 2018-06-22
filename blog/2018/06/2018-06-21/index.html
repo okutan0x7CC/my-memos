@@ -107,6 +107,88 @@
 <pre><code>import UIKit
 import PlaygroundSupport
 
+/// An extension to UIScreen that offers information about the pixel density (or point density) of iPhones and iPads.
+/// https://github.com/marchv/UIScreenExtension/blob/master/UIScreenExtension/UIScreenExtension.swift
+
+private extension UIDevice {
+
+    static let modelIdentifier: String = {
+        if let simulatorModelIdentifier = ProcessInfo().environment[&quot;SIMULATOR_MODEL_IDENTIFIER&quot;] { return simulatorModelIdentifier }
+        var sysinfo = utsname()
+        uname(&amp;sysinfo) // ignore return value
+        return String(bytes: Data(bytes: &amp;sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .ascii)!.trimmingCharacters(in: .controlCharacters)
+    }()
+
+}
+
+@available(iOS 9.0, *)
+public extension UIScreen {
+
+    /// The number of pixels per inch for this device
+    static let pixelsPerInch: CGFloat? = {
+        switch UIDevice.modelIdentifier {
+        case &quot;iPad2,1&quot;, &quot;iPad2,2&quot;, &quot;iPad2,3&quot;, &quot;iPad2,4&quot;:             // iPad 2
+            return 132
+
+        case &quot;iPad2,5&quot;, &quot;iPad2,6&quot;, &quot;iPad2,7&quot;:                        // iPad Mini
+            return 163
+
+        case &quot;iPad3,1&quot;, &quot;iPad3,2&quot;, &quot;iPad3,3&quot;:            fallthrough // iPad 3rd generation
+        case &quot;iPad3,4&quot;, &quot;iPad3,5&quot;, &quot;iPad3,6&quot;:            fallthrough // iPad 4th generation
+        case &quot;iPad4,1&quot;, &quot;iPad4,2&quot;, &quot;iPad4,3&quot;:            fallthrough // iPad Air
+        case &quot;iPad5,3&quot;, &quot;iPad5,4&quot;:                       fallthrough // iPad Air 2
+        case &quot;iPad6,7&quot;, &quot;iPad6,8&quot;:                       fallthrough // iPad Pro (12.9 inch)
+        case &quot;iPad6,3&quot;, &quot;iPad6,4&quot;:                       fallthrough // iPad Pro (9.7 inch)
+        case &quot;iPad6,11&quot;, &quot;iPad6,12&quot;:                     fallthrough // iPad 5th generation
+        case &quot;iPad7,1&quot;, &quot;iPad7,2&quot;:                       fallthrough // iPad Pro (12.9 inch, 2nd generation)
+        case &quot;iPad7,3&quot;, &quot;iPad7,4&quot;:                       fallthrough // iPad Pro (10.5 inch)
+        case &quot;iPad7,5&quot;, &quot;iPad7,6&quot;:                                   // iPad 6th generation
+            return 264
+
+        case &quot;iPhone4,1&quot;:                                fallthrough // iPhone 4S
+        case &quot;iPhone5,1&quot;, &quot;iPhone5,2&quot;:                   fallthrough // iPhone 5
+        case &quot;iPhone5,3&quot;, &quot;iPhone5,4&quot;:                   fallthrough // iPhone 5C
+        case &quot;iPhone6,1&quot;, &quot;iPhone6,2&quot;:                   fallthrough // iPhone 5S
+        case &quot;iPhone8,4&quot;:                                fallthrough // iPhone SE
+        case &quot;iPhone7,2&quot;:                                fallthrough // iPhone 6
+        case &quot;iPhone8,1&quot;:                                fallthrough // iPhone 6S
+        case &quot;iPhone9,1&quot;, &quot;iPhone9,3&quot;:                   fallthrough // iPhone 7
+        case &quot;iPhone10,1&quot;, &quot;iPhone10,4&quot;:                 fallthrough // iPhone 8
+        case &quot;iPod5,1&quot;:                                  fallthrough // iPod Touch 5th generation
+        case &quot;iPod7,1&quot;:                                  fallthrough // iPod Touch 6th generation
+        case &quot;iPad4,4&quot;, &quot;iPad4,5&quot;, &quot;iPad4,6&quot;:            fallthrough // iPad Mini 2
+        case &quot;iPad4,7&quot;, &quot;iPad4,8&quot;, &quot;iPad4,9&quot;:            fallthrough // iPad Mini 3
+        case &quot;iPad5,1&quot;, &quot;iPad5,2&quot;:                                   // iPad Mini 4
+            return 326
+
+        case &quot;iPhone7,1&quot;:                                fallthrough // iPhone 6 Plus
+        case &quot;iPhone8,2&quot;:                                fallthrough // iPhone 6S Plus
+        case &quot;iPhone9,2&quot;, &quot;iPhone9,4&quot;:                   fallthrough // iPhone 7 Plus
+        case &quot;iPhone10,2&quot;, &quot;iPhone10,5&quot;:                             // iPhone 8 Plus
+            return 401
+
+        case &quot;iPhone10,3&quot;, &quot;iPhone10,6&quot;:                             // iPhone X
+            return 458
+
+        default:                                                     // unknown model identifier
+            return .none
+        }
+    }()
+
+    /// The number of points per inch for this device
+    static let pointsPerInch: CGFloat? = {
+        if let pixelsPerInch = pixelsPerInch {
+            return pixelsPerInch / main.nativeScale
+        }
+        return .none
+    }()
+
+}
+
+
+/// --- ///
+
+
 class LandoltCView: UIView {
     private var gap:    CGFloat = 0.00145
     private var degree: CGFloat = 0
@@ -132,7 +214,7 @@ class LandoltCView: UIView {
     }
 
     override func draw(_ rect: CGRect) {
-        let lineWidth = meter2px(m: self.gap)
+        let lineWidth = meter2pt(m: self.gap)
         drawCircle(lineWidth: lineWidth)
         drawRectangle(lineWidth: lineWidth, degree: self.degree)
     }
@@ -140,7 +222,7 @@ class LandoltCView: UIView {
     private func drawCircle(lineWidth: CGFloat) {
         let bezier = UIBezierPath(arcCenter:  CGPoint(x: self.frame.width * 0.5,
                                                     y: self.frame.height * 0.5),
-                                radius:     meter2px(m: gap * 2.5),
+                                radius:     meter2pt(m: gap * 2.5),
                                 startAngle: 0,
                                 endAngle:   360,
                                 clockwise:  true)
@@ -203,15 +285,13 @@ class LandoltCView: UIView {
         triangle.stroke();
     }
 
-    private func meter2px(m: CGFloat) -&gt; CGFloat {
-
-        // TODO: その他機器もやる
-        let ppi: CGFloat = 401 // (iphone8+)
-
+    private func meter2pt(m: CGFloat) -&gt; CGFloat {
+        guard let pointsPerInch = UIScreen.pointsPerInch else { fatalError(&quot;points per inch&quot;) }
         let meters = Measurement(value: Double(m), unit: UnitLength.meters)
-        return ppi * CGFloat(meters.converted(to: UnitLength.inches).value)
+        return pointsPerInch * CGFloat(meters.converted(to: UnitLength.inches).value)
     }
 }
+
 
 class LandoltC {
     let d:   CGFloat               // distance from camera to eyes [m]
@@ -237,7 +317,6 @@ class LandoltC {
         let degree = 180 * alpha / CGFloat.pi
         return 1 / (degree * 60)
     }
-
 
     enum GapDirection {
         case right
@@ -276,11 +355,26 @@ class LandoltC {
     }
 }
 
-let landoltC = LandoltC(d:    5,
-                        rect: CGRect(x: 0, y: 0,
-                                    width: 300, height: 300))
-landoltC.changeDirection(.right)
+
+
+/// ↓ Example Code ↓ ///
+
+let distanceFromCameraToEyes: CGFloat = 5 // [m]
+let landoltCViewRect = CGRect(x: 0, y: 0,
+                            width: 300, height: 300)
+
+let landoltC = LandoltC(d:    distanceFromCameraToEyes,
+                        rect: landoltCViewRect)
+
+// Update gap width [m]
 landoltC.updateGap(gap: 0.00145)
+
+// Change gap direction
+landoltC.changeDirection(.right)
+
+// Caluculate eyesight
+landoltC.eyesight()
+
 PlaygroundPage.current.liveView = landoltC.landoltCView
 </code></pre>
 
