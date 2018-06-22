@@ -19,7 +19,13 @@
       <guid>https://masakipedia.github.io/blog/2018/06/2018-06-21/</guid>
       <description>Introduction I have developed the Landolt C class this time.
 
-Playground import UIKit import PlaygroundSupport /// An extension to UIScreen that offers information about the pixel density (or point density) of iPhones and iPads. /// https://github.com/marchv/UIScreenExtension/blob/master/UIScreenExtension/UIScreenExtension.swift private extension UIDevice { static let modelIdentifier: String = { if let simulatorModelIdentifier = ProcessInfo().environment[&amp;quot;SIMULATOR_MODEL_IDENTIFIER&amp;quot;] { return simulatorModelIdentifier } var sysinfo = utsname() uname(&amp;amp;sysinfo) // ignore return value return String(bytes: Data(bytes: &amp;amp;sysinfo.machine, count: Int(_SYS_NAMELEN)), encoding: .</description>
+Example  Generate instance
+let distanceFromDeviceToEyes: CGFloat = 5 // [m] let landoltCViewRect = CGRect(x: 0, y: 0, width: 300, height: 300) let landoltC = LandoltC(d: distanceFromCameraToEyes, rect: landoltCViewRect)  Landolt C view
+PlaygroundPage.current.liveView = landoltC.landoltCView  Update gap width [m]
+landoltC.updateGap(gap: 0.00145)  Change gap direction
+landoltC.changeDirection(.right)  Caluculate eyesight
+landoltC.eyesight()   
+Playground import UIKit import PlaygroundSupport /// An extension to UIScreen that offers information about the pixel density (or point density) of iPhones and iPads.</description>
     </item>
     
     <item>

@@ -102,6 +102,43 @@
 
 <p><br></p>
 
+<h2 id="example">Example</h2>
+
+<p><img src="https://user-images.githubusercontent.com/32217053/41752169-c8ca401c-7600-11e8-9254-c1d043ca2e19.png" width="100%"></p>
+
+<ul>
+<li><p>Generate instance</p>
+
+<pre><code>let distanceFromDeviceToEyes: CGFloat = 5 // [m]
+let landoltCViewRect = CGRect(x: 0, y: 0,
+                          width: 300, height: 300)
+let landoltC = LandoltC(d: distanceFromCameraToEyes, 
+                    rect: landoltCViewRect)
+</code></pre></li>
+
+<li><p>Landolt C view</p>
+
+<pre><code>PlaygroundPage.current.liveView = landoltC.landoltCView
+</code></pre></li>
+
+<li><p>Update gap width [m]</p>
+
+<pre><code>landoltC.updateGap(gap: 0.00145)
+</code></pre></li>
+
+<li><p>Change gap direction</p>
+
+<pre><code>landoltC.changeDirection(.right)
+</code></pre></li>
+
+<li><p>Caluculate eyesight</p>
+
+<pre><code>landoltC.eyesight()
+</code></pre></li>
+</ul>
+
+<p><br></p>
+
 <h2 id="playground">Playground</h2>
 
 <pre><code>import UIKit
